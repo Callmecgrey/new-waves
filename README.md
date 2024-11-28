@@ -5,23 +5,40 @@ linconwaves new site
 ```
 new-waves/
 ├── components/
-│   ├── GeometricShape.js
-│   ├── Navbar.js
-│   ├── ScrollSection.js
+│   ├── ErrorBoundary.tsx
+│   ├── GeometricShape.tsx
+│   ├── Navbar.tsx
+│   ├── ScrollSection.tsx
 │   └── ui/
-│       └── Button.js
+│       └── Button.tsx
 ├── lib/
-│   └── utils.js
+│   └── utils.ts
 ├── pages/
-│   ├── _app.js
-│   └── index.js
+│   ├── _app.tsx
+│   ├── _document.tsx
+│   ├── index.tsx
+│   ├── products.tsx
+│   ├── technologies.tsx
+│   └── ... (other pages)
 ├── public/
-│   └── favicon.ico
+│   ├── favicon.ico
+│   ├── manifest.json
+│   └── icons/
+│       ├── icon-192x192.png
+│       └── icon-512x512.png
+├── store/
+│   └── useStore.ts
 ├── styles/
 │   └── globals.css
-├── package.json
+├── tests/
+│   └── ... (test files)
+├── jest.config.js
+├── jest.setup.js
 ├── next.config.js
-├── tailwind.config.js
-├── postcss.config.js
+├── tsconfig.json
+├── package.json
+├── .eslintrc.js
+├── .prettierrc
+├── .env.local
 └── README.md
 ```

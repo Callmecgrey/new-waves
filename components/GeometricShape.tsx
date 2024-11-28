@@ -1,24 +1,24 @@
-'use client'
+'use client';
 
-import { useRef } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { Icosahedron } from '@react-three/drei'
+import { useRef } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Icosahedron } from '@react-three/drei';
 
 function Shape() {
-  const meshRef = useRef()
+  const meshRef = useRef<any>();
 
   useFrame(() => {
     if (meshRef.current) {
-      meshRef.current.rotation.x += 0.01
-      meshRef.current.rotation.y += 0.01
+      meshRef.current.rotation.x += 0.01;
+      meshRef.current.rotation.y += 0.01;
     }
-  })
+  });
 
   return (
     <Icosahedron ref={meshRef} args={[1, 0]} position={[0, 0, 0]}>
       <meshStandardMaterial color="#8a2be2" wireframe />
     </Icosahedron>
-  )
+  );
 }
 
 export default function GeometricShape() {
@@ -30,5 +30,5 @@ export default function GeometricShape() {
         <Shape />
       </Canvas>
     </div>
-  )
+  );
 }
