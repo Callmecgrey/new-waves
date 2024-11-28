@@ -89,22 +89,22 @@ export default function Navbar() {
               backgroundColor: 'rgba(0, 0, 0, 0.7)', // Semi-transparent black
             },
             tooltip: {
-              backgroundColor: '#000000', // Black background
-              color: '#ffffff', // White text
+              backgroundColor: '#ffffff', // White background for tooltip
+              color: '#000000', // Black text
               border: 'none', // Remove border
               boxShadow: 'none', // Remove shadow
               padding: '1rem', // Optional: Add padding for better readability
               borderRadius: '0.5rem', // Optional: Add border radius for smoother edges
             },
             button: {
-              backgroundColor: '#ffffff', // White background for buttons
-              color: '#000000', // Black text
+              backgroundColor: '#000000', // Black background for buttons
+              color: '#ffffff', // White text
               border: 'none',
               borderRadius: '0.25rem', // Optional: Add border radius
               padding: '0.5rem 1rem', // Optional: Add padding
             },
             close: {
-              color: '#ffffff', // White close icon
+              color: '#000000', // Black close icon
               backgroundColor: 'transparent',
               border: 'none',
             },
