@@ -1,3 +1,5 @@
+// components/ScrollSection.tsx
+
 'use client';
 
 import { useRef, useEffect, useState, ReactNode } from 'react';
@@ -6,15 +8,13 @@ import { cn } from '../lib/utils';
 interface ScrollSectionProps {
   children: ReactNode;
   className?: string;
-  gradientFrom?: string;
-  gradientTo?: string;
+  backgroundColor?: string; // New prop for background color
 }
 
 export function ScrollSection({
   children,
   className,
-  gradientFrom = 'from-purple-400',
-  gradientTo = 'to-blue-500',
+  backgroundColor = 'bg-black', // Default to black background
 }: ScrollSectionProps) {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -33,7 +33,7 @@ export function ScrollSection({
     <div
       ref={ref}
       className={cn(
-        'min-h-screen flex items-center justify-center transition-opacity duration-1000',
+        `min-h-screen flex items-center justify-center transition-opacity duration-1000 ${backgroundColor}`,
         isVisible ? 'opacity-100' : 'opacity-0',
         className
       )}
