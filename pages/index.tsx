@@ -25,7 +25,7 @@ export default function Home() {
           content="Building the future of technology with innovative solutions."
         />
         <meta property="og:image" content="/images/og-image.jpg" />
-        <meta property="og:url" content="https://www.linconwaves.com" />
+        <meta property="og:url" content="https://www.linconwavesinnovation.com" />
         <meta property="og:type" content="website" />
       </Head>
       <main className="bg-black text-white pt-16 relative">
@@ -94,7 +94,7 @@ export default function Home() {
             We strive to make each solution intuitive, efficient, and powerful
             under the hood.
           </p>
-          <Button className="text-lg">Explore our solutions</Button>
+          <Button className="text-lg">Explore our products</Button>
         </ScrollSection>
 
         {/* Geometric Shape Background */}
