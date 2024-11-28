@@ -37,7 +37,7 @@ export default function Home() {
         <Navbar />
 
         {/* Hero Section */}
-        <ScrollSection>
+        <ScrollSection backgroundColor="bg-black">
           <h1 className="text-6xl md:text-8xl font-bold">
             <span className="text-white">Impossible.</span>{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">
@@ -47,7 +47,7 @@ export default function Home() {
         </ScrollSection>
 
         {/* Engineering Section */}
-        <ScrollSection gradientFrom="from-purple-400" gradientTo="to-blue-600">
+        <ScrollSection backgroundColor="bg-gray-900">
           <h2 className="text-6xl md:text-8xl font-bold mb-4">
             Engineering{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">
@@ -61,7 +61,7 @@ export default function Home() {
         </ScrollSection>
 
         {/* Team Section */}
-        <ScrollSection gradientFrom="from-emerald-400" gradientTo="to-cyan-500">
+        <ScrollSection backgroundColor="bg-gray-800">
           <h2 className="text-6xl md:text-8xl font-bold mb-4">
             The secret sauce:{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500">
@@ -78,7 +78,7 @@ export default function Home() {
         </ScrollSection>
 
         {/* Technology Section */}
-        <ScrollSection gradientFrom="from-blue-400" gradientTo="to-indigo-500">
+        <ScrollSection backgroundColor="bg-gray-900">
           <h2 className="text-6xl md:text-8xl font-bold mb-4">
             State-of-the-art{' '}
             <div className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">
@@ -88,7 +88,7 @@ export default function Home() {
         </ScrollSection>
 
         {/* Product Section */}
-        <ScrollSection>
+        <ScrollSection backgroundColor="bg-black">
           <h2 className="text-6xl md:text-8xl font-bold mb-8">
             Crafted{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">
