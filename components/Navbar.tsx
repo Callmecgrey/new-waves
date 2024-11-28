@@ -82,31 +82,35 @@ export default function Navbar() {
           isOpen={isTourOpen}
           steps={tourSteps}
           onRequestClose={() => setIsTourOpen(false)}
-          accentColor="#8a2be2"
-          className="font-yourfont"
+          accentColor="#8a2be2" // Customize accent color if needed
+          className="font-source-sans-3" // Ensure this matches your font configuration
           styles={{
             mask: {
-              backgroundColor: 'rgba(0, 0, 0, 0.7)', 
+              backgroundColor: 'rgba(0, 0, 0, 0.7)', // Semi-transparent black
             },
             tooltip: {
-              backgroundColor: '#000000',
-              color: '#000000', 
-              border: 'none', 
-              boxShadow: 'none', 
+              backgroundColor: '#000000', // Black background
+              color: '#ffffff', // White text
+              border: 'none', // Remove border
+              boxShadow: 'none', // Remove shadow
+              padding: '1rem', // Optional: Add padding for better readability
+              borderRadius: '0.5rem', // Optional: Add border radius for smoother edges
             },
             button: {
-              backgroundColor: '#ffffff', 
-              color: '#000000', 
+              backgroundColor: '#ffffff', // White background for buttons
+              color: '#000000', // Black text
               border: 'none',
+              borderRadius: '0.25rem', // Optional: Add border radius
+              padding: '0.5rem 1rem', // Optional: Add padding
             },
             close: {
-              color: '#ffffff', 
+              color: '#ffffff', // White close icon
               backgroundColor: 'transparent',
               border: 'none',
             },
             highlighted: {
-              boxShadow: 'none', 
-              border: 'none',
+              boxShadow: 'none', // Remove any default shadows
+              border: 'none', // Remove borders
             },
           }}
         />
@@ -152,7 +156,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-95 flex flex-col justify-center items-center space-y-8 font-yourfont">
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-95 flex flex-col justify-center items-center space-y-8 font-source-sans-3">
           <button
             onClick={() => setIsMenuOpen(false)}
             className="absolute top-6 right-6 text-white focus:outline-none focus:ring-2 focus:ring-white"
