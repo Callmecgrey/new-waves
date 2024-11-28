@@ -1,3 +1,5 @@
+// .eslintrc.js
+
 module.exports = {
     parser: '@typescript-eslint/parser',
     extends: [
@@ -8,14 +10,21 @@ module.exports = {
     ],
     plugins: ['@typescript-eslint', 'react'],
     rules: {
-      // Disable the rule that requires React to be in scope
       'react/react-in-jsx-scope': 'off',
-      // Add other custom rules if needed
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
+      'react/no-unknown-property': [
+        'error',
+        {
+          ignore: ['wireframe', 'intensity', 'position', 'args', 'attach'],
+        },
+      ],
     },
     settings: {
       react: {
         version: 'detect',
       },
     },
-  };
-  
+  };  

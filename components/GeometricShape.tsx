@@ -1,3 +1,5 @@
+// components/GeometricShape.tsx
+
 'use client';
 
 import { useRef } from 'react';

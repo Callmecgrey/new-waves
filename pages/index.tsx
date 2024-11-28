@@ -1,3 +1,5 @@
+// pages/index.tsx
+
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import Navbar from '../components/Navbar';
@@ -25,7 +27,10 @@ export default function Home() {
           content="Building the future of technology with innovative solutions."
         />
         <meta property="og:image" content="/images/og-image.jpg" />
-        <meta property="og:url" content="https://www.linconwavesinnovation.com" />
+        <meta
+          property="og:url"
+          content="https://www.linconwavesinnovation.com"
+        />
         <meta property="og:type" content="website" />
       </Head>
       <main className="bg-black text-white pt-16 relative">
@@ -64,8 +69,8 @@ export default function Home() {
             </span>
           </h2>
           <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
-            We're obsessive about creating a place where talented, hard-working,
-            and full of team spirit people can thrive.
+            We&apos;re obsessive about creating a place where talented,
+            hard-working, and full of team spirit people can thrive.
           </p>
           <div className="inline-flex items-center justify-center bg-white text-black rounded-full px-8 py-4 font-medium">
             4.8/5 Team satisfaction
