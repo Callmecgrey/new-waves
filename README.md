@@ -19,7 +19,7 @@ new-waves/
 │   ├── index.tsx
 │   ├── products.tsx
 │   ├── technologies.tsx
-│   └── ... (other pages)
+│   └── 
 ├── public/
 │   ├── favicon.ico
 │   ├── manifest.json
