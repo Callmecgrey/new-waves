@@ -2,39 +2,19 @@
 
 'use client';
 
-import { useRef, useEffect, useState, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { cn } from '../lib/utils';
 
 interface ScrollSectionProps {
   children: ReactNode;
   className?: string;
-  backgroundColor?: string; // New prop for background color
 }
 
-export function ScrollSection({
-  children,
-  className,
-  backgroundColor = 'bg-black', // Default to black background
-}: ScrollSectionProps) {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.1 }
-    );
-
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
+export function ScrollSection({ children, className }: ScrollSectionProps) {
   return (
     <div
-      ref={ref}
       className={cn(
-        `min-h-screen flex items-center justify-center transition-opacity duration-1000 ${backgroundColor}`,
-        isVisible ? 'opacity-100' : 'opacity-0',
+        'min-h-screen flex items-center justify-center bg-black', // Hardcoded black background
         className
       )}
     >
