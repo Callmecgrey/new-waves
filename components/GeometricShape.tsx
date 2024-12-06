@@ -7,6 +7,10 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Icosahedron } from '@react-three/drei';
 import { Mesh } from 'three';
 
+interface GeometricShapeProps {
+  className?: string;
+}
+
 function Shape() {
   const meshRef = useRef<Mesh>(null);
 
@@ -18,15 +22,15 @@ function Shape() {
   });
 
   return (
-    <Icosahedron ref={meshRef} args={[1, 0]} position={[0, 0, 0]}>
+    <Icosahedron ref={meshRef} args={[0.5, 0]} position={[0, 0, 0]}>
       <meshStandardMaterial color="#8a2be2" wireframe />
     </Icosahedron>
   );
 }
 
-export default function GeometricShape() {
+export default function GeometricShape({ className }: GeometricShapeProps) {
   return (
-    <div className="absolute inset-0 z-0">
+    <div className={`absolute inset-0 ${className}`}>
       <Canvas>
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} />

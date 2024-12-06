@@ -38,12 +38,15 @@ export default function Home() {
 
         {/* Hero Section */}
         <ScrollSection>
-          <h1 className="text-6xl md:text-8xl font-bold">
-            <span className="text-white">Limitations.</span>{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">
-              No.
-            </span>
-          </h1>
+          <div className="relative flex items-center justify-center h-screen">
+            <GeometricShape className="absolute top-0 left-0 w-40 h-40 z-10 opacity-50" />
+            <h1 className="relative z-20 text-6xl md:text-8xl font-bold">
+              <span className="text-white">Limitations.</span>{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">
+                No.
+              </span>
+            </h1>
+          </div>
         </ScrollSection>
 
         {/* Engineering Section */}
