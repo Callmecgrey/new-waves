@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 const navItems = [
+  { name: 'Home', href: '/' },
   { name: 'Products', href: '/products' },
   { name: 'Technologies', href: '/technologies' },
   { name: 'People', href: '/people' },
