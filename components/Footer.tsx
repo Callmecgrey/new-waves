@@ -106,7 +106,7 @@ export default function Footer() {
               </a>
             </li>
             <li className="text-gray-400">
-              <Link href="/support-center" passHref>
+              <Link href="/support" passHref>
                 <a className="hover:text-white">
                   Support center
                 </a>
