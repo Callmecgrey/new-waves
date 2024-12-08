@@ -41,11 +41,11 @@ export default function Home() {
         {/* Hero Section */}
         <ScrollSection>
           {/* Wrapped GeometricShape and Hero Content in a Relative Container */}
-          <div className="relative w-full h-screen">
-            {/* Geometric Shape Background */}
+          <div className="relative w-full h-screen overflow-hidden">
+            {/* Geometric Shape on Top */}
             <GeometricShape />
             <div className="relative flex items-center justify-center h-full z-10">
-              <h1 className="relative z-20 text-6xl md:text-8xl font-bold">
+              <h1 className="relative z-10 text-6xl md:text-8xl font-bold">
                 <span className="text-white">Limitations.</span>{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">
                   No.
