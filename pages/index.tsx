@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import Navbar from '../components/Navbar';
 import { ScrollSection } from '../components/ScrollSection';
 import { Button } from '../components/ui/Button';
-import Link from 'next/link'; // Import Link for navigation
+import Link from 'next/link';
 
 const GeometricShape = dynamic(() => import('../components/GeometricShape'), {
   ssr: false,
@@ -41,7 +41,7 @@ export default function Home() {
         <ScrollSection>
           {/* Geometric Shape Background */}
           <GeometricShape />
-          <div className="relative flex items-center justify-center h-screen">
+          <div className="relative flex items-center justify-center h-screen z-10">
             <h1 className="relative z-20 text-6xl md:text-8xl font-bold">
               <span className="text-white">Limitations.</span>{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">
@@ -84,9 +84,9 @@ export default function Home() {
         <ScrollSection>
           <h2 className="text-6xl md:text-8xl font-bold mb-4">
             Next-Gen{' '}
-            <div className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">
               in-house technologies
-            </div>
+            </span>
           </h2>
         </ScrollSection>
 
