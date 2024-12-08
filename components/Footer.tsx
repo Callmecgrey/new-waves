@@ -18,16 +18,16 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/values" passHref>
+              <Link href="/blog" passHref>
                 <a className="text-gray-400 hover:text-white">
-                  Values
+                  Blog
                 </a>
               </Link>
             </li>
             <li>
               <Link href="/careers" passHref>
                 <a className="text-gray-400 hover:text-white">
-                  Careers
+                  Career
                 </a>
               </Link>
             </li>
@@ -88,9 +88,9 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/cookie-policy" passHref>
+              <Link href="/dont-sell-my-data" passHref>
                 <a className="text-gray-400 hover:text-white">
-                  Cookie Policy
+                  Do not sell my data
                 </a>
               </Link>
             </li>
