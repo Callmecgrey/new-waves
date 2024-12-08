@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import Navbar from '../components/Navbar';
 import { ScrollSection } from '../components/ScrollSection';
 import { Button } from '../components/ui/Button';
+import Link from 'next/link'; // Import Link for navigation
 
 const GeometricShape = dynamic(() => import('../components/GeometricShape'), {
   ssr: false,
@@ -59,21 +60,20 @@ export default function Home() {
             </span>
           </h2>
           <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-          Empowering businesses with scalable software solutions and unparalleled technical expertise.
+            Empowering businesses with scalable software solutions and unparalleled technical expertise.
           </p>
         </ScrollSection>
 
         {/* Team Section */}
         <ScrollSection>
           <h2 className="text-6xl md:text-8xl font-bold mb-4">
-          Our Secret Weapon:{' '}
+            Our Secret Weapon:{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500">
               our team
             </span>
           </h2>
           <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
-          We&apos;re dedicated to fostering a collaborative environment where talented,
-          and innovative individuals can excel and drive our projects forward.
+            We&apos;re dedicated to fostering a collaborative environment where talented and innovative individuals can excel and drive our projects forward.
           </p>
           <div className="inline-flex items-center justify-center bg-white text-black rounded-full px-8 py-4 font-medium">
             4.8/5 Team Morale
@@ -99,9 +99,12 @@ export default function Home() {
             </span>
           </h2>
           <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
-          We design each solution to be intuitive, efficient, and robust, ensuring seamless performance and exceptional user experiences.
+            We design each solution to be intuitive, efficient, and robust, ensuring seamless performance and exceptional user experiences.
           </p>
-          <Button className="text-lg">Explore our products</Button>
+          {/* Wrap the Button with Link to make it clickable */}
+          <Link href="/products" passHref>
+            <Button className="text-lg">Explore our products</Button>
+          </Link>
         </ScrollSection>
 
         {/* Footer */}
@@ -112,19 +115,25 @@ export default function Home() {
               <h3 className="text-lg font-semibold mb-4">Company</h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="#" className="text-gray-400 hover:text-white">
-                    About us
-                  </a>
+                  <Link href="/about-us" passHref>
+                    <a className="text-gray-400 hover:text-white">
+                      About us
+                    </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-400 hover:text-white">
-                    Values
-                  </a>
+                  <Link href="/values" passHref>
+                    <a className="text-gray-400 hover:text-white">
+                      Values
+                    </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-400 hover:text-white">
-                    Careers
-                  </a>
+                  <Link href="/careers" passHref>
+                    <a className="text-gray-400 hover:text-white">
+                      Careers
+                    </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -133,17 +142,32 @@ export default function Home() {
               <h3 className="text-lg font-semibold mb-4">Follow us</h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="#" className="text-gray-400 hover:text-white">
+                  <a
+                    href="https://www.linkedin.com/company/linconwaves"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white"
+                  >
                     LinkedIn
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-400 hover:text-white">
+                  <a
+                    href="https://twitter.com/linconwaves"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white"
+                  >
                     Twitter
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-400 hover:text-white">
+                  <a
+                    href="https://instagram.com/linconwaves"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white"
+                  >
                     Instagram
                   </a>
                 </li>
@@ -154,19 +178,25 @@ export default function Home() {
               <h3 className="text-lg font-semibold mb-4">Legal</h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="#" className="text-gray-400 hover:text-white">
-                    Privacy Policy
-                  </a>
+                  <Link href="/privacy-policy" passHref>
+                    <a className="text-gray-400 hover:text-white">
+                      Privacy Policy
+                    </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-400 hover:text-white">
-                    Terms of Service
-                  </a>
+                  <Link href="/terms-of-service" passHref>
+                    <a className="text-gray-400 hover:text-white">
+                      Terms of Service
+                    </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-400 hover:text-white">
-                    Cookie Policy
-                  </a>
+                  <Link href="/cookie-policy" passHref>
+                    <a className="text-gray-400 hover:text-white">
+                      Cookie Policy
+                    </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -174,8 +204,18 @@ export default function Home() {
             <div>
               <h3 className="text-lg font-semibold mb-4">Contact</h3>
               <ul className="space-y-2">
-                <li className="text-gray-400">hello@linconwaves.com</li>
-                <li className="text-gray-400">Support center</li>
+                <li className="text-gray-400">
+                  <a href="mailto:hello@linconwaves.com" className="hover:text-white">
+                    hello@linconwaves.com
+                  </a>
+                </li>
+                <li className="text-gray-400">
+                  <Link href="/support-center" passHref>
+                    <a className="hover:text-white">
+                      Support center
+                    </a>
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
