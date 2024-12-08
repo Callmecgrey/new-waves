@@ -37,6 +37,16 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold mb-4">Follow us</h3>
           <ul className="space-y-2">
+          <li>
+              <a
+                href="https://www.github.com/linconwaves"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white"
+              >
+                GitHub
+              </a>
+            </li>
             <li>
               <a
                 href="https://www.linkedin.com/company/linconwaves"
