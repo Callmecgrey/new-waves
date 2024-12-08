@@ -4,7 +4,6 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 
 const navItems = [
@@ -14,11 +13,6 @@ const navItems = [
   { name: 'Events', href: '/events' },
   { name: 'Jobs', href: '/jobs' },
 ];
-
-// Dynamically import GeometricShape if it's a heavy component
-const GeometricShape = dynamic(() => import('./GeometricShape'), {
-  ssr: false,
-});
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
@@ -99,15 +93,29 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Geometric Shape as Mobile Menu Toggle */}
+      {/* Hamburger Icon as Mobile Menu Toggle */}
       <div className="md:hidden fixed bottom-6 right-6 z-50">
         <button
           onClick={() => setIsMenuOpen(true)}
           className="w-12 h-12 bg-black bg-opacity-70 rounded-full flex items-center justify-center hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white"
           aria-label="Open Menu"
         >
-          {/* Integrate GeometricShape as an Icon */}
-          <GeometricShape className="w-30 h-30" />
+          {/* Hamburger Icon SVG */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 text-white"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
         </button>
       </div>
 
