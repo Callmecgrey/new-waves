@@ -23,7 +23,7 @@ function Shape() {
 
   return (
     <Icosahedron ref={meshRef} args={[0.5, 0]} position={[0, 0, 0]}>
-      <meshStandardMaterial color="#8a2be2" wireframe />
+      <meshStandardMaterial color="#ffffff" wireframe />
     </Icosahedron>
   );
 }

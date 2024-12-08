@@ -38,8 +38,9 @@ export default function Home() {
 
         {/* Hero Section */}
         <ScrollSection>
+          {/* Geometric Shape Background */}
+          <GeometricShape />
           <div className="relative flex items-center justify-center h-screen">
-            <GeometricShape className="absolute top-0 left-0 w-40 h-40 z-10 opacity-50" />
             <h1 className="relative z-20 text-6xl md:text-8xl font-bold">
               <span className="text-white">Limitations.</span>{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">
@@ -52,38 +53,37 @@ export default function Home() {
         {/* Engineering Section */}
         <ScrollSection>
           <h2 className="text-6xl md:text-8xl font-bold mb-4">
-            Engineering{' '}
+            Innovation{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">
-              at our core
+              Driven by Code
             </span>
           </h2>
           <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-            Building the future of technology with innovative solutions and
-            cutting-edge expertise.
+          Empowering businesses with scalable software solutions and unparalleled technical expertise.
           </p>
         </ScrollSection>
 
         {/* Team Section */}
         <ScrollSection>
           <h2 className="text-6xl md:text-8xl font-bold mb-4">
-            The secret sauce:{' '}
+          Our Secret Weapon:{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500">
               our team
             </span>
           </h2>
           <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
-            We&apos;re obsessive about creating a place where talented,
-            hard-working, and full of team spirit people can thrive.
+          We&apos;re dedicated to fostering a collaborative environment where talented,
+          and innovative individuals can excel and drive our projects forward.
           </p>
           <div className="inline-flex items-center justify-center bg-white text-black rounded-full px-8 py-4 font-medium">
-            4.8/5 Team satisfaction
+            4.8/5 Team Morale
           </div>
         </ScrollSection>
 
         {/* Technology Section */}
         <ScrollSection>
           <h2 className="text-6xl md:text-8xl font-bold mb-4">
-            State-of-the-art{' '}
+            Next-Gen{' '}
             <div className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">
               in-house technologies
             </div>
@@ -93,20 +93,16 @@ export default function Home() {
         {/* Product Section */}
         <ScrollSection>
           <h2 className="text-6xl md:text-8xl font-bold mb-8">
-            Crafted{' '}
+            Engineered{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">
-              with care
+              with precision
             </span>
           </h2>
           <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
-            We strive to make each solution intuitive, efficient, and powerful
-            under the hood.
+          We design each solution to be intuitive, efficient, and robust, ensuring seamless performance and exceptional user experiences.
           </p>
           <Button className="text-lg">Explore our products</Button>
         </ScrollSection>
-
-        {/* Geometric Shape Background */}
-        <GeometricShape />
 
         {/* Footer */}
         <footer className="bg-black border-t border-gray-800">
