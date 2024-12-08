@@ -32,7 +32,6 @@ export default function GeometricShape({ className }: GeometricShapeProps) {
   return (
     <div
       className={`absolute inset-0 pointer-events-none z-0 ${className}`}
-      aria-hidden="true"
     >
       <Canvas>
         <ambientLight intensity={0.5} />

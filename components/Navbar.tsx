@@ -4,10 +4,8 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { GiMonkey } from 'react-icons/gi'; // Import the monkey icon
-import { XMarkIcon } from '@heroicons/react/24/outline'; // Close icon
 import dynamic from 'next/dynamic';
-import { ReactourStep } from 'reactour'; // Import the type
+import { useRouter } from 'next/router';
 
 const navItems = [
   { name: 'Products', href: '/products' },
@@ -17,14 +15,16 @@ const navItems = [
   { name: 'Jobs', href: '/jobs' },
 ];
 
-// Dynamically import 'reactour' with SSR disabled
-const Tour = dynamic(() => import('reactour'), { ssr: false });
+// Dynamically import GeometricShape if it's a heavy component
+const GeometricShape = dynamic(() => import('./GeometricShape'), {
+  ssr: false,
+});
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [isTourOpen, setIsTourOpen] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  const router = useRouter(); // Initialize useRouter
 
   // Detect scroll to change navbar style
   useEffect(() => {
@@ -47,136 +47,123 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Control tour visibility based on screen size
+  // Disable scrolling when the menu is open
   useEffect(() => {
-    if (isMobile) {
-      setIsTourOpen(true);
-    } else {
-      setIsTourOpen(false);
-    }
-  }, [isMobile]);
-
-  // Disable scrolling when the menu or tour is open
-  useEffect(() => {
-    if (isMenuOpen || isTourOpen) {
+    if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
-  }, [isMenuOpen, isTourOpen]);
-
-  // Define the tour steps with explicit typing
-  const tourSteps: ReactourStep[] = [
-    {
-      selector: '.monkey-icon',
-      content: 'Click here to open the menu!',
-      position: 'top', // Must match one of the allowed positions
-    },
-  ];
+  }, [isMenuOpen]);
 
   return (
     <>
-      {/* React Tour Component */}
-      {isMobile && (
-        <Tour
-          isOpen={isTourOpen}
-          steps={tourSteps}
-          onRequestClose={() => setIsTourOpen(false)}
-          accentColor="#8a2be2" // Customize accent color if needed
-          className="font-source-sans-3" // Ensure this matches your font configuration
-          styles={{
-            mask: {
-              backgroundColor: 'rgba(0, 0, 0, 0.7)', // Semi-transparent black
-            },
-            tooltip: {
-              backgroundColor: '#ffffff', // White background for tooltip
-              color: '#000000', // Black text
-              border: 'none', // Remove border
-              boxShadow: 'none', // Remove shadow
-              padding: '1rem', // Optional: Add padding for better readability
-              borderRadius: '0.5rem', // Optional: Add border radius for smoother edges
-            },
-            button: {
-              backgroundColor: '#000000', // Black background for buttons
-              color: '#ffffff', // White text
-              border: 'none',
-              borderRadius: '0.25rem', // Optional: Add border radius
-              padding: '0.5rem 1rem', // Optional: Add padding
-            },
-            close: {
-              color: '#000000', // Black close icon
-              backgroundColor: 'transparent',
-              border: 'none',
-            },
-            highlighted: {
-              boxShadow: 'none', // Remove any default shadows
-              border: 'none', // Remove borders
-            },
-          }}
-        />
-      )}
-
       {/* Navbar */}
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled ? 'bg-black bg-opacity-90 shadow-lg' : 'bg-transparent'
         }`}
+        aria-label="Main Navigation"
       >
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="text-white text-2xl font-bold">
-            LINCONWAVES INNOVATION
+          <Link href="/" passHref>
+            <a className="text-white text-xl font-bold" aria-label="Home">
+              LINCONWAVES INNOVATION
+            </a>
           </Link>
           {/* Desktop Navigation */}
           <ul className="hidden md:flex space-x-6">
-            {navItems.map((item) => (
-              <li key={item.name}>
-                <Link
-                  href={item.href}
-                  className="text-white hover:text-gray-300 transition-colors"
-                  aria-label={item.name}
-                >
-                  {item.name}
-                </Link>
-              </li>
-            ))}
+            {navItems.map((item) => {
+              // Determine if the current route matches the item's href
+              const isActive = router.pathname === item.href;
+
+              return (
+                <li key={item.name}>
+                  <Link href={item.href} passHref>
+                    <a
+                      className={`${
+                        isActive
+                          ? 'text-blue-500 font-semibold'
+                          : 'text-white hover:text-gray-300'
+                      } transition-colors`}
+                      aria-current={isActive ? 'page' : undefined}
+                      aria-label={item.name}
+                    >
+                      {item.name}
+                    </a>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </nav>
 
-      {/* Floating Monkey Icon for Mobile */}
+      {/* Geometric Shape as Mobile Menu Toggle */}
       <div className="md:hidden fixed bottom-6 right-6 z-50">
         <button
           onClick={() => setIsMenuOpen(true)}
-          className="p-3 bg-black bg-opacity-70 rounded-full text-white hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white monkey-icon"
+          className="w-12 h-12 bg-black bg-opacity-70 rounded-full flex items-center justify-center hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white"
           aria-label="Open Menu"
         >
-          <GiMonkey className="h-6 w-6" />
+          {/* Integrate GeometricShape as an Icon */}
+          <GeometricShape className="w-30 h-30" />
         </button>
       </div>
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-95 flex flex-col justify-center items-center space-y-8 font-source-sans-3">
+        <div
+          className="fixed inset-0 z-50 bg-black bg-opacity-95 flex flex-col justify-center items-center space-y-8"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="mobile-menu-title"
+        >
           <button
             onClick={() => setIsMenuOpen(false)}
             className="absolute top-6 right-6 text-white focus:outline-none focus:ring-2 focus:ring-white"
             aria-label="Close Menu"
           >
-            <XMarkIcon className="h-8 w-8" />
+            {/* Simple Close Icon*/}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-8 w-8"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
           </button>
           <ul className="text-center">
-            {navItems.map((item) => (
-              <li key={item.name} className="mb-6">
-                <Link
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-white text-3xl font-semibold hover:text-gray-300 transition-colors"
-                  aria-label={item.name}
-                >
-                  {item.name}
-                </Link>
-              </li>
-            ))}
+            {navItems.map((item) => {
+              const isActive = router.pathname === item.href;
+
+              return (
+                <li key={item.name} className="mb-6">
+                  <Link href={item.href} passHref>
+                    <a
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`${
+                        isActive
+                          ? 'text-blue-500 font-semibold'
+                          : 'text-white hover:text-gray-300'
+                      } text-3xl font-semibold transition-colors`}
+                      aria-current={isActive ? 'page' : undefined}
+                      aria-label={item.name}
+                    >
+                      {item.name}
+                    </a>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}
