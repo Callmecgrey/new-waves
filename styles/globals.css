@@ -37,8 +37,3 @@ body {
 html {
   scroll-behavior: smooth;
 }
-
-/* Hide the React Tour arrow */
-.reactour__arrow {
-  display: none;
-}
