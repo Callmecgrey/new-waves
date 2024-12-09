@@ -155,10 +155,11 @@ export default function AboutUs() {
               Be part of a team that’s driving meaningful change and delivering
               transformative solutions. Explore our career opportunities today.
             </p>
-            <Link href="/careers" passHref>
-              <a className="bg-gradient-to-r from-blue-500 to-green-500 text-white py-3 px-8 rounded-lg text-lg font-medium hover:from-blue-600 hover:to-green-600 transition shadow-lg">
-                Explore Careers
-              </a>
+            <Link
+              href="/careers"
+              className="bg-gradient-to-r from-blue-500 to-green-500 text-white py-3 px-8 rounded-lg text-lg font-medium hover:from-blue-600 hover:to-green-600 transition shadow-lg"
+            >
+              Explore Careers
             </Link>
           </div>
         </section>

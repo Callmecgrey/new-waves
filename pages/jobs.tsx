@@ -3,7 +3,7 @@
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import Link from 'next/link'; // Import Link for client-side navigation
+import Link from 'next/link'; 
 import { useState } from 'react';
 
 interface Job {
@@ -52,8 +52,7 @@ export default function Jobs() {
         'As a Cloud Architect, you’ll design and manage scalable cloud-based infrastructures for enterprise-level solutions.',
       link: '/jobs/cloud-architect',
       department: 'Engineering',
-    },
-    // Add more jobs as needed
+    }
   ];
 
   // State for selected tab
