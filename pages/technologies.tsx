@@ -82,21 +82,18 @@ export default function Technologies() {
           name="description"
           content="Explore the cutting-edge technologies we use to deliver exceptional solutions for web, mobile, desktop, and AI-driven applications."
         />
-        <meta
-          property="og:title"
-          content="Technologies | Linconwaves Innovation"
-        />
+        <meta property="og:title" content="Technologies | Linconwaves Innovation" />
         <meta
           property="og:description"
           content="Explore the cutting-edge technologies we use to deliver exceptional solutions for web, mobile, desktop, and AI-driven applications."
         />
         <meta property="og:image" content="/images/og-technologies.jpg" />
       </Head>
-      <main className="bg-black text-white pt-16">
+      <main className="bg-black text-white pt-16 snap-y snap-mandatory overflow-y-scroll">
         <Navbar />
 
         {/* Hero Section */}
-        <section className="relative w-full h-screen flex items-center justify-center bg-gradient-to-b from-black to-gray-900 text-center px-6 md:px-0">
+        <section className="snap-start relative w-full h-screen flex items-center justify-center bg-gradient-to-b from-black to-gray-900 text-center px-6 md:px-0">
           <div>
             <h1 className="text-6xl md:text-8xl font-bold mb-6">
               Technology{' '}
@@ -105,8 +102,7 @@ export default function Technologies() {
               </span>
             </h1>
             <p className="text-lg md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
-              Discover the advanced technologies we use to build innovative
-              solutions across web, mobile, desktop, and AI platforms.
+              Discover the advanced technologies we use to build innovative solutions across web, mobile, desktop, and AI platforms.
             </p>
           </div>
         </section>
@@ -115,7 +111,7 @@ export default function Technologies() {
         {techSections.map((section, index) => (
           <section
             key={index}
-            className={`relative ${section.bg} min-h-[80vh] flex items-center`}
+            className={`snap-start relative ${section.bg} h-screen flex items-center justify-center`}
           >
             <div className="container mx-auto px-6 md:px-12">
               {/* Different Layouts Based on `layout` */}
@@ -123,12 +119,8 @@ export default function Technologies() {
                 <div className="flex flex-col md:flex-row items-center space-y-12 md:space-y-0">
                   {/* Text Content */}
                   <div className="flex-1 text-center md:text-left">
-                    <h2 className="text-5xl md:text-6xl font-bold mb-6">
-                      {section.category}
-                    </h2>
-                    <p className="text-lg md:text-2xl text-gray-300 mb-8">
-                      {section.description}
-                    </p>
+                    <h2 className="text-5xl md:text-6xl font-bold mb-6">{section.category}</h2>
+                    <p className="text-lg md:text-2xl text-gray-300 mb-8">{section.description}</p>
                   </div>
                   {/* Floating Tech Images */}
                   <div className="flex-1 flex space-x-6 justify-center md:justify-start flex-wrap">
@@ -155,12 +147,8 @@ export default function Technologies() {
 
               {section.layout === 'center-stack' && (
                 <div className="text-center">
-                  <h2 className="text-5xl md:text-6xl font-bold mb-6">
-                    {section.category}
-                  </h2>
-                  <p className="text-lg md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12">
-                    {section.description}
-                  </p>
+                  <h2 className="text-5xl md:text-6xl font-bold mb-6">{section.category}</h2>
+                  <p className="text-lg md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12">{section.description}</p>
                   {/* Centered Floating Tech Images */}
                   <div className="flex justify-center flex-wrap gap-8">
                     {section.technologies.map((tech, idx) => (
@@ -186,12 +174,8 @@ export default function Technologies() {
 
               {section.layout === 'image-grid' && (
                 <div>
-                  <h2 className="text-5xl md:text-6xl font-bold mb-6 text-center">
-                    {section.category}
-                  </h2>
-                  <p className="text-lg md:text-2xl text-gray-300 text-center max-w-3xl mx-auto mb-12">
-                    {section.description}
-                  </p>
+                  <h2 className="text-5xl md:text-6xl font-bold mb-6 text-center">{section.category}</h2>
+                  <p className="text-lg md:text-2xl text-gray-300 text-center max-w-3xl mx-auto mb-12">{section.description}</p>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                     {section.technologies.map((tech, idx) => (
                       <div
@@ -238,12 +222,8 @@ export default function Technologies() {
                   </div>
                   {/* Text Content */}
                   <div className="flex-1 text-center md:text-right">
-                    <h2 className="text-5xl md:text-6xl font-bold mb-6">
-                      {section.category}
-                    </h2>
-                    <p className="text-lg md:text-2xl text-gray-300 mb-8">
-                      {section.description}
-                    </p>
+                    <h2 className="text-5xl md:text-6xl font-bold mb-6">{section.category}</h2>
+                    <p className="text-lg md:text-2xl text-gray-300 mb-8">{section.description}</p>
                   </div>
                 </div>
               )}
