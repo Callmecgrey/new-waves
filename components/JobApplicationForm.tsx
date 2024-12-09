@@ -85,7 +85,7 @@ ${formData.name}`
         className="px-4 py-2 mb-4 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
 
-      <label className="mb-2 font-medium">Resume URL</label>
+      <label className="mb-2 font-medium">Resume URL(google drive/dropbox)</label>
       <input
         type="url"
         name="resume"

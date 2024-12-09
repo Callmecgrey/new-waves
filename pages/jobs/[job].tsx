@@ -107,7 +107,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
       link: '/jobs/cloud-architect',
       department: 'Engineering',
     },
-    // Add more jobs as needed
   ];
 
   const paths = jobs.map((job) => ({
@@ -158,7 +157,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
       link: '/jobs/cloud-architect',
       department: 'Engineering',
     },
-    // Add more jobs as needed
   ];
 
   const jobData = jobs.find(
