@@ -3,7 +3,6 @@
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import Image from 'next/image';
 import Link from 'next/link'; // Import Link for client-side navigation
 import { useState } from 'react';
 
@@ -133,15 +132,6 @@ export default function Jobs() {
                   key={index}
                   className="bg-gray-800 rounded-lg shadow-lg p-6 hover:shadow-xl transition-all flex flex-col"
                 >
-                  <div className="relative w-full h-48 mb-6">
-                    <Image
-                      src={`/images/jobs/${job.title.toLowerCase().replace(/ /g, '-')}.jpg`}
-                      alt={job.title}
-                      layout="fill"
-                      objectFit="cover"
-                      className="rounded-lg"
-                    />
-                  </div>
                   <h3 className="text-2xl font-bold mb-2">{job.title}</h3>
                   <p className="text-gray-400">{job.location}</p>
                   <p className="text-gray-400 mb-4">{job.type}</p>

@@ -4,7 +4,6 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
-import Image from 'next/image';
 import JobApplicationForm from '../../components/JobApplicationForm';
 
 interface Job {
@@ -28,7 +27,7 @@ export default function JobDetail({ job }: JobDetailProps) {
         <meta name="description" content={`Apply for the ${job.title} position at Linconwaves Innovation`} />
         <meta property="og:title" content={`${job.title} | Linconwaves Innovation`} />
         <meta property="og:description" content={`Apply for the ${job.title} position at Linconwaves Innovation`} />
-        <meta property="og:image" content={`/images/jobs/${job.title.toLowerCase().replace(/ /g, '-')}.jpg`} />
+        <meta property="og:image" content={`/images/og-jobs.jpg`} />
       </Head>
       <main className="bg-black text-white pt-16 min-h-screen">
         <Navbar />
@@ -36,28 +35,19 @@ export default function JobDetail({ job }: JobDetailProps) {
         {/* Job Detail Section */}
         <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
           <div className="container mx-auto px-6 md:px-12">
-            <div className="flex flex-col md:flex-row items-start md:items-center">
-              <div className="relative w-full md:w-1/2 h-64 md:h-96 mb-6 md:mb-0">
-                <Image
-                  src={`/images/jobs/${job.title.toLowerCase().replace(/ /g, '-')}.jpg`}
-                  alt={job.title}
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-lg"
-                />
-              </div>
-              <div className="md:ml-12 w-full md:w-1/2">
+            <div className="flex flex-col items-start">
+              <div className="mb-6">
                 <h1 className="text-4xl md:text-5xl font-bold mb-4">{job.title}</h1>
                 <p className="text-gray-400 mb-2">{job.location}</p>
                 <p className="text-gray-400 mb-4">{job.type}</p>
                 <p className="text-gray-300 mb-6">{job.description}</p>
               </div>
-            </div>
 
-            {/* Application Form */}
-            <div className="mt-12">
-              <h2 className="text-3xl md:text-4xl font-semibold mb-6">Apply for this Position</h2>
-              <JobApplicationForm jobTitle={job.title} />
+              {/* Application Form */}
+              <div className="mt-12 w-full">
+                <h2 className="text-3xl md:text-4xl font-semibold mb-6">Apply for this Position</h2>
+                <JobApplicationForm jobTitle={job.title} />
+              </div>
             </div>
           </div>
         </section>
