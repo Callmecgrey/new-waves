@@ -4,13 +4,18 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { ScrollSection } from '../components/ScrollSection';
 import { Button } from '../components/ui/Button';
 import Link from 'next/link';
 
 const GeometricShape = dynamic(() => import('../components/GeometricShape'), {
   ssr: false,
 });
+
+// Dynamic import with named export
+const ScrollSection = dynamic(
+  () => import('../components/ScrollSection').then((mod) => mod.ScrollSection),
+  { ssr: false }
+);
 
 export default function Home() {
   return (
