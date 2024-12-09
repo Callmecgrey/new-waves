@@ -2,30 +2,32 @@
 
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link'; // Or use CustomLink if applicable
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 export default function Products() {
   const products = [
     {
-      name: 'Product Alpha',
+      name: 'Jolimate',
       description:
-        'Revolutionize your business with our cutting-edge AI-powered solution.',
-      image: '/images/product-alpha.jpg',
-      link: '/products/alpha',
+        'Jolimate revolutionizes online dating by leveraging advanced matchmaking algorithms and personalized user experiences. Connect with like-minded individuals seamlessly, ensuring meaningful and lasting relationships.',
+      image: '/images/web-joli.png',
+      link: 'https://jolimate.app',
     },
     {
-      name: 'Product Beta',
-      description: 'Seamless integration for modern businesses.',
+      name: 'Jobmint',
+      description:
+        'Jobmint simplifies the job search process with real-time listings, tailored job recommendations, and an intuitive interface. Whether you\'re a seasoned professional or just starting out, Jobmint helps you find the perfect opportunity with ease.',
       image: '/images/product-beta.jpg',
-      link: '/products/beta',
+      link: 'https://jobmint.io',
     },
     {
-      name: 'Product Gamma',
+      name: 'Minlink',
       description:
-        'Efficient, scalable, and ready to tackle complex challenges.',
+        'Minlink offers a robust URL shortening service that not only makes your links more manageable but also provides detailed analytics and customizable branding options. Enhance your online presence and track link performance effortlessly with Minlink.',
       image: '/images/product-gamma.jpg',
-      link: '/products/gamma',
+      link: 'https://minlink.io',
     },
   ];
 
@@ -42,7 +44,12 @@ export default function Products() {
           property="og:description"
           content="Explore our innovative and cutting-edge product solutions designed to meet your business needs."
         />
-        <meta property="og:image" content="/images/og-products.jpg" />
+        <meta property="og:image" content="https://www.linconwavesinnovation.com/images/og-products.jpg" />
+        <meta
+          property="og:url"
+          content="https://www.linconwavesinnovation.com/products"
+        />
+        <meta property="og:type" content="website" />
       </Head>
       <main className="bg-black text-white pt-16">
         <Navbar />
@@ -60,12 +67,13 @@ export default function Products() {
               Dive into our cutting-edge products that redefine technology and
               empower businesses to achieve more.
             </p>
-            <a
+            {/* Internal Link without nested <a> */}
+            <Link
               href="#products"
-              className="bg-gradient-to-r from-purple-500 to-blue-500 text-white py-3 px-6 rounded-lg text-lg font-medium hover:from-purple-600 hover:to-blue-600 transition shadow-lg"
+              className="bg-gradient-to-r from-purple-500 to-blue-500 text-white py-3 px-6 rounded-lg text-lg font-medium hover:from-purple-600 hover:to-blue-600 transition shadow-lg inline-block"
             >
               Browse Products
-            </a>
+            </Link>
           </div>
         </section>
 
@@ -83,33 +91,38 @@ export default function Products() {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-              {products.map((product, index) => (
-                <div
+              {products.map((product) => (
+                <a
+                  href={product.link}
                   key={product.name}
-                  className="group relative bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block"
                 >
-                  <div className="relative w-full h-64">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      layout="fill"
-                      objectFit="cover"
-                      className="transition-transform group-hover:scale-110"
-                    />
+                  <div className="relative bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+                    <div className="relative w-full h-64">
+                      <Image
+                        src={product.image}
+                        alt={`${product.name} Image`}
+                        layout="fill"
+                        objectFit="cover"
+                        className="transition-transform group-hover:scale-110"
+                        priority
+                        placeholder="blur" // Optional: Add blur placeholder if available
+                        blurDataURL="/images/placeholder.png" // Optional: Provide a low-res placeholder
+                      />
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-2xl font-bold mb-3">{product.name}</h3>
+                      <p className="text-gray-400 mb-6">{product.description}</p>
+                      <span className="text-blue-500 font-medium hover:underline hover:text-blue-400 transition">
+                        Learn More &rarr;
+                      </span>
+                    </div>
+                    {/* Subtle Background Hover Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 opacity-0 group-hover:opacity-20 transition-opacity"></div>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-2xl font-bold mb-3">{product.name}</h3>
-                    <p className="text-gray-400 mb-6">{product.description}</p>
-                    <a
-                      href={product.link}
-                      className="text-blue-500 font-medium hover:underline hover:text-blue-400 transition"
-                    >
-                      Learn More &rarr;
-                    </a>
-                  </div>
-                  {/* Subtle Background Hover Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 opacity-0 group-hover:opacity-20 transition-opacity"></div>
-                </div>
+                </a>
               ))}
             </div>
           </div>
@@ -125,12 +138,13 @@ export default function Products() {
               Take the next step in transforming your business with our
               expertise and innovative products.
             </p>
-            <a
+            {/* Internal Link without nested <a> */}
+            <Link
               href="/contact"
-              className="bg-gradient-to-r from-emerald-500 to-cyan-500 text-white py-3 px-8 rounded-lg text-lg font-medium hover:from-emerald-600 hover:to-cyan-600 transition shadow-lg"
+              className="bg-gradient-to-r from-emerald-500 to-cyan-500 text-white py-3 px-8 rounded-lg text-lg font-medium hover:from-emerald-600 hover:to-cyan-600 transition shadow-lg inline-block"
             >
               Get in Touch
-            </a>
+            </Link>
           </div>
         </section>
 
