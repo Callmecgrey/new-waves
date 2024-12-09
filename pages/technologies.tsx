@@ -12,13 +12,13 @@ export default function Technologies() {
       description:
         'We build dynamic and scalable web applications using modern frameworks and tools to ensure performance, responsiveness, and excellent user experiences.',
       technologies: [
-        '/images/react.svg',
-        '/images/nextjs.svg',
-        '/images/nodejs.svg',
-        '/images/graphql.svg',
-        '/images/tailwind.svg',
+        'https://img.icons8.com/?size=150&id=bzf0DqjXFHIW&format=png&color=000000',
+        'https://img.icons8.com/?size=150&id=MWiBjkuHeMVq&format=png&color=000000',
+        'https://img.icons8.com/?size=150&id=54087&format=png&color=000000',
+        'https://img.icons8.com/?size=150&id=zdI5E8moxhs-&format=png&color=000000',
+        'https://img.icons8.com/?size=150&id=CIAZz2CYc6Kc&format=png&color=000000',
       ],
-      layout: 'left-floating-images', // Custom layout for this section
+      layout: 'left-floating-images',
       bg: 'bg-gradient-to-r from-purple-900 to-black',
     },
     {
@@ -230,7 +230,7 @@ export default function Technologies() {
           </section>
         ))}
 
-        {/* Call to Action Section */}
+        {/* Call to Action Section 
         <section className="py-16 bg-black text-center">
           <div className="container mx-auto px-6 md:px-0">
             <h2 className="text-5xl md:text-6xl font-bold mb-8">
@@ -247,7 +247,7 @@ export default function Technologies() {
               Get in Touch
             </a>
           </div>
-        </section>
+        </section>*/}
 
         <Footer />
       </main>
