@@ -19,7 +19,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  const router = useRouter(); // Initialize useRouter
+  const router = useRouter();
 
   // Detect scroll to change navbar style
   useEffect(() => {
@@ -61,31 +61,26 @@ export default function Navbar() {
         aria-label="Main Navigation"
       >
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" passHref>
-            <a className="text-white text-xl font-bold" aria-label="Home">
-              LINCONWAVES INNOVATION
-            </a>
+          <Link href="/" className="text-white text-xl font-bold" aria-label="Home">
+            LINCONWAVES INNOVATION
           </Link>
           {/* Desktop Navigation */}
           <ul className="hidden md:flex space-x-6">
             {navItems.map((item) => {
-              // Determine if the current route matches the item's href
               const isActive = router.pathname === item.href;
 
               return (
                 <li key={item.name}>
-                  <Link href={item.href} passHref>
-                    <a
-                      className={`${
-                        isActive
-                          ? 'text-blue-500 font-semibold'
-                          : 'text-white hover:text-gray-300'
-                      } transition-colors`}
-                      aria-current={isActive ? 'page' : undefined}
-                      aria-label={item.name}
-                    >
-                      {item.name}
-                    </a>
+                  <Link
+                    href={item.href}
+                    className={`${
+                      isActive
+                        ? 'text-blue-500 font-semibold'
+                        : 'text-white hover:text-gray-300'
+                    } transition-colors`}
+                    aria-current={isActive ? 'page' : undefined}
+                  >
+                    {item.name}
                   </Link>
                 </li>
               );
@@ -133,7 +128,7 @@ export default function Navbar() {
             className="absolute top-6 right-6 text-white focus:outline-none focus:ring-2 focus:ring-white"
             aria-label="Close Menu"
           >
-            {/* Simple Close Icon*/}
+            {/* Simple Close Icon */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-8 w-8"
@@ -156,19 +151,17 @@ export default function Navbar() {
 
               return (
                 <li key={item.name} className="mb-6">
-                  <Link href={item.href} passHref>
-                    <a
-                      onClick={() => setIsMenuOpen(false)}
-                      className={`${
-                        isActive
-                          ? 'text-blue-500 font-semibold'
-                          : 'text-white hover:text-gray-300'
-                      } text-3xl font-semibold transition-colors`}
-                      aria-current={isActive ? 'page' : undefined}
-                      aria-label={item.name}
-                    >
-                      {item.name}
-                    </a>
+                  <Link
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`${
+                      isActive
+                        ? 'text-blue-500 font-semibold'
+                        : 'text-white hover:text-gray-300'
+                    } text-3xl font-semibold transition-colors`}
+                    aria-current={isActive ? 'page' : undefined}
+                  >
+                    {item.name}
                   </Link>
                 </li>
               );

@@ -11,24 +11,18 @@ export default function Footer() {
           <h3 className="text-lg font-semibold mb-4">Company</h3>
           <ul className="space-y-2">
             <li>
-              <Link href="/about" passHref>
-                <a className="text-gray-400 hover:text-white">
-                  About us
-                </a>
+              <Link href="/about" className="text-gray-400 hover:text-white">
+                About us
               </Link>
             </li>
             <li>
-              <Link href="/blog" passHref>
-                <a className="text-gray-400 hover:text-white">
-                  Blog
-                </a>
+              <Link href="/blog" className="text-gray-400 hover:text-white">
+                Blog
               </Link>
             </li>
             <li>
-              <Link href="/careers" passHref>
-                <a className="text-gray-400 hover:text-white">
-                  Career
-                </a>
+              <Link href="/careers" className="text-gray-400 hover:text-white">
+                Career
               </Link>
             </li>
           </ul>
@@ -37,7 +31,7 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold mb-4">Follow us</h3>
           <ul className="space-y-2">
-          <li>
+            <li>
               <a
                 href="https://www.github.com/linconwaves"
                 target="_blank"
@@ -59,17 +53,17 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="https://twitter.com/linconwaves"
+                href="https://www.x.com/linconwaves"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white"
               >
-                Twitter
+                x.com
               </a>
             </li>
             <li>
               <a
-                href="https://instagram.com/linconwaves"
+                href="https://www.instagram.com/linconwaves"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white"
@@ -84,24 +78,27 @@ export default function Footer() {
           <h3 className="text-lg font-semibold mb-4">Legal</h3>
           <ul className="space-y-2">
             <li>
-              <Link href="/privacy-policy" passHref>
-                <a className="text-gray-400 hover:text-white">
-                  Privacy Policy
-                </a>
+              <Link
+                href="/privacy-policy"
+                className="text-gray-400 hover:text-white"
+              >
+                Privacy Policy
               </Link>
             </li>
             <li>
-              <Link href="/terms-of-service" passHref>
-                <a className="text-gray-400 hover:text-white">
-                  Terms of Service
-                </a>
+              <Link
+                href="/terms-of-service"
+                className="text-gray-400 hover:text-white"
+              >
+                Terms of Service
               </Link>
             </li>
             <li>
-              <Link href="/dont-sell-my-data" passHref>
-                <a className="text-gray-400 hover:text-white">
-                  Do not sell my data
-                </a>
+              <Link
+                href="/dont-sell-my-data"
+                className="text-gray-400 hover:text-white"
+              >
+                Do not sell my data
               </Link>
             </li>
           </ul>
@@ -110,16 +107,17 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold mb-4">Contact</h3>
           <ul className="space-y-2">
-            <li className="text-gray-400">
-              <a href="mailto:hello@linconwaves.com" className="hover:text-white">
+            <li>
+              <a
+                href="mailto:hello@linconwaves.com"
+                className="text-gray-400 hover:text-white"
+              >
                 hello@linconwaves.com
               </a>
             </li>
-            <li className="text-gray-400">
-              <Link href="/support" passHref>
-                <a className="hover:text-white">
-                  Support center
-                </a>
+            <li>
+              <Link href="/support" className="text-gray-400 hover:text-white">
+                Support center
               </Link>
             </li>
           </ul>

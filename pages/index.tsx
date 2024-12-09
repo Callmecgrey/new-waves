@@ -106,7 +106,7 @@ export default function Home() {
             We design each solution to be intuitive, efficient, and robust, ensuring seamless performance and exceptional user experiences.
           </p>
           {/* Wrapped Button with Link to make it clickable */}
-          <Link href="/products" passHref>
+          <Link href="/products">
             <Button className="text-lg">Explore our products</Button>
           </Link>
         </ScrollSection>
