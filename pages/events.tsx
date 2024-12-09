@@ -1,25 +1,41 @@
 // pages/events.tsx
 
+import { useState } from 'react';
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Image from 'next/image';
+import { Button } from '../components/ui/Button';
+import RemindMeModal from '../components/modals/RemindMeModal';
+import ViewDetailsModal from '../components/modals/ViewDetailsModal';
+
+// Define the Event interface
+interface Event {
+  title: string;
+  date: string;
+  location: string;
+  image: string;
+  description: string;
+  detailsLink?: string;
+  zoomLink?: string;
+  nextEventTime?: string;
+}
 
 export default function Events() {
   const events = {
     upcoming: [
       {
-        title: 'Tech Innovators Conference 2024',
-        date: 'March 25, 2024',
-        location: 'San Francisco, CA',
+        title: 'Tech Innovators Conference 2025',
+        date: 'March 25, 2025',
+        location: 'Osaka, Japan',
         image: '/images/event-tech-conference.jpg',
         description:
           'Join industry leaders and innovators as they share insights on the future of technology.',
       },
       {
         title: 'AI for Good Summit',
-        date: 'June 15, 2024',
-        location: 'London, UK',
+        date: 'June 15, 2025',
+        location: 'London, United Kingdom',
         image: '/images/event-ai-summit.jpg',
         description:
           'Explore how AI can drive meaningful change across industries and society.',
@@ -33,13 +49,16 @@ export default function Events() {
         image: '/images/event-hackathon.jpg',
         description:
           'Collaborate with developers worldwide to create decentralized solutions.',
+        detailsLink: 'https://linkedin.com/web3-hackathon-weosks',
+        zoomLink: 'https://zoom.us/j/123456789',
+        nextEventTime: 'Next Workshop: December 22, 2024',
       },
     ],
     past: [
       {
-        title: 'Future of Work Conference 2023',
+        title: 'Future of Work With AI',
         date: 'September 18, 2023',
-        location: 'New York, NY',
+        location: 'Limassol, Cyprus',
         image: '/images/event-future-work.jpg',
         description:
           'Discover insights on how technology is transforming the modern workplace.',
@@ -54,6 +73,14 @@ export default function Events() {
       },
     ],
   };
+
+  // State for Remind Me Modal
+  const [isRemindMeOpen, setIsRemindMeOpen] = useState<boolean>(false);
+  const [selectedUpcomingEvent, setSelectedUpcomingEvent] = useState<string | null>(null);
+
+  // State for View Details Modal
+  const [isViewDetailsOpen, setIsViewDetailsOpen] = useState<boolean>(false);
+  const [selectedOngoingEvent, setSelectedOngoingEvent] = useState<Event | null>(null);
 
   return (
     <>
@@ -117,7 +144,15 @@ export default function Events() {
                   <h3 className="text-2xl font-bold mb-2">{event.title}</h3>
                   <p className="text-gray-400">{event.date}</p>
                   <p className="text-gray-400 mb-4">{event.location}</p>
-                  <p className="text-gray-300">{event.description}</p>
+                  <p className="text-gray-300 mb-6">{event.description}</p>
+                  <Button
+                    onClick={() => {
+                      setSelectedUpcomingEvent(event.title);
+                      setIsRemindMeOpen(true);
+                    }}
+                  >
+                    Remind Me
+                  </Button>
                 </div>
               ))}
             </div>
@@ -152,7 +187,15 @@ export default function Events() {
                   <h3 className="text-2xl font-bold mb-2">{event.title}</h3>
                   <p className="text-gray-400">{event.date}</p>
                   <p className="text-gray-400 mb-4">{event.location}</p>
-                  <p className="text-gray-300">{event.description}</p>
+                  <p className="text-gray-300 mb-6">{event.description}</p>
+                  <Button
+                    onClick={() => {
+                      setSelectedOngoingEvent(event);
+                      setIsViewDetailsOpen(true);
+                    }}
+                  >
+                    View Details
+                  </Button>
                 </div>
               ))}
             </div>
@@ -187,12 +230,34 @@ export default function Events() {
                   <h3 className="text-2xl font-bold mb-2">{event.title}</h3>
                   <p className="text-gray-400">{event.date}</p>
                   <p className="text-gray-400 mb-4">{event.location}</p>
-                  <p className="text-gray-300">{event.description}</p>
+                  <p className="text-gray-300 mb-6">{event.description}</p>
+                  <button
+                    disabled
+                    className="px-4 py-2 bg-red-600 text-white rounded-full cursor-not-allowed opacity-50"
+                  >
+                    Event Ended
+                  </button>
                 </div>
               ))}
             </div>
           </div>
         </section>
+
+        {/* Remind Me Modal */}
+        <RemindMeModal
+          isOpen={isRemindMeOpen}
+          onClose={() => setIsRemindMeOpen(false)}
+          eventTitle={selectedUpcomingEvent}
+        />
+
+        {/* View Details Modal */}
+        {selectedOngoingEvent && (
+          <ViewDetailsModal
+            isOpen={isViewDetailsOpen}
+            onClose={() => setIsViewDetailsOpen(false)}
+            event={selectedOngoingEvent}
+          />
+        )}
 
         <Footer />
       </main>

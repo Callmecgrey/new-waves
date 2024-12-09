@@ -2,35 +2,43 @@
 
 import Head from 'next/head';
 import Image from 'next/image';
-import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { Button } from '../components/ui/Button';
 
 export default function People() {
   const teamMembers = [
     {
-      name: 'Alice Johnson',
+      name: 'Olalekan Onaolapo',
       title: 'CEO & Founder',
       description: 'Visionary leader passionate about innovation and growth.',
-      image: '/images/alice.jpg',
+      image: '/images/olalekan.jpg',
+      linkedin: 'https://www.linkedin.com/in/olalekan-onaolapo',
+      location: 'Nicosia, Cyprus.',
     },
     {
-      name: 'Bob Smith',
-      title: 'CTO',
+      name: 'Oluwatumininu Haroun',
+      title: 'Director',
       description: 'Tech enthusiast driving cutting-edge solutions.',
-      image: '/images/bob.jpg',
+      image: '/images/tumininu.jpg',
+      linkedin: 'https://www.linkedin.com/in/oluwatumininu-haroun',
+      location: 'London, United Kingdom.',
     },
     {
-      name: 'Charlie Lee',
+      name: 'Eric Jin',
       title: 'Lead Developer',
       description: 'Crafting scalable software solutions with precision.',
       image: '/images/charlie.jpg',
+      linkedin: 'https://www.linkedin.com/in/eric-jin',
+      location: 'San Francisco, USA',
     },
     {
       name: 'Diana Evans',
       title: 'AI Specialist',
       description: 'Harnessing AI to solve tomorrow’s challenges today.',
       image: '/images/diana.jpg',
+      linkedin: 'https://www.linkedin.com/in/diana-evans',
+      location: 'London, UK',
     },
   ];
 
@@ -39,21 +47,29 @@ export default function People() {
       name: 'Emily Watson',
       title: 'UX Designer',
       image: '/images/emily.jpg',
+      linkedin: 'https://www.linkedin.com/in/emily-watson',
+      location: 'New York, USA',
     },
     {
       name: 'James Carter',
       title: 'Data Scientist',
       image: '/images/james.jpg',
+      linkedin: 'https://www.linkedin.com/in/james-carter',
+      location: 'Toronto, Canada',
     },
     {
       name: 'Sophia Williams',
       title: 'Marketing Lead',
       image: '/images/sophia.jpg',
+      linkedin: 'https://www.linkedin.com/in/sophia-williams',
+      location: 'Sydney, Australia',
     },
     {
       name: 'Michael Brown',
       title: 'Cloud Engineer',
       image: '/images/michael.jpg',
+      linkedin: 'https://www.linkedin.com/in/michael-brown',
+      location: 'Berlin, Germany',
     },
   ];
 
@@ -65,10 +81,7 @@ export default function People() {
           name="description"
           content="Meet the incredible team behind Linconwaves Innovation. Discover the people driving our vision forward."
         />
-        <meta
-          property="og:title"
-          content="People | Linconwaves Innovation"
-        />
+        <meta property="og:title" content="People | Linconwaves Innovation" />
         <meta
           property="og:description"
           content="Meet the incredible team behind Linconwaves Innovation. Discover the people driving our vision forward."
@@ -108,15 +121,15 @@ export default function People() {
               {teamMembers.map((member, index) => (
                 <div
                   key={index}
-                  className={`flex flex-col md:flex-row items-center ${
-                    index % 2 === 0 ? '' : 'md:flex-row-reverse'
-                  } space-y-6 md:space-y-0 md:space-x-6 md:space-x-reverse`}
+                  className={`flex flex-col md:flex-row items-start ${
+                    index % 2 !== 0 ? 'md:flex-row-reverse' : ''
+                  } gap-6 md:gap-12`}
                 >
                   {/* Team Member Image */}
-                  <div className="relative w-full md:w-1/3 h-64 md:h-80">
+                  <div className="relative w-full md:w-1/3 h-80 md:h-96">
                     <Image
                       src={member.image}
-                      alt={member.name}
+                      alt={`${member.name}'s Profile Picture`}
                       layout="fill"
                       objectFit="cover"
                       className="rounded-lg shadow-lg"
@@ -127,7 +140,53 @@ export default function People() {
                   <div className="flex-1 text-center md:text-left">
                     <h3 className="text-3xl font-bold mb-2">{member.name}</h3>
                     <p className="text-lg text-gray-400 mb-4">{member.title}</p>
-                    <p className="text-gray-300">{member.description}</p>
+                    <p className="text-gray-300 mb-4">{member.description}</p>
+
+                    {/* LinkedIn and Location */}
+                    <div className="flex items-center justify-center md:justify-start space-x-4">
+                      {/* LinkedIn Link */}
+                      {member.linkedin && (
+                        <a
+                          href={member.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-500 hover:text-blue-400 transition"
+                          aria-label={`${member.name}'s LinkedIn Profile`}
+                        >
+                          {/* LinkedIn SVG Icon */}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-6 w-6"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                          >
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.027-3.063-1.868-3.063-1.869 0-2.155 1.46-2.155 2.964v5.7h-3v-10h2.88v1.367h.041c.402-.76 1.385-1.562 2.846-1.562 3.046 0 3.612 2.005 3.612 4.615v5.583z" />
+                          </svg>
+                        </a>
+                      )}
+
+                      {/* Location */}
+                      {member.location && (
+                        <span className="text-gray-400 flex items-center">
+                          {/* Location SVG Icon */}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-6 w-6 mr-1"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M12 11c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm0 4c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"
+                            />
+                          </svg>
+                          {member.location}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -155,7 +214,7 @@ export default function People() {
                   <div className="relative w-24 h-24 md:w-32 md:h-32">
                     <Image
                       src={member.image}
-                      alt={member.name}
+                      alt={`${member.name}'s Profile Picture`}
                       layout="fill"
                       objectFit="cover"
                       className="rounded-full"
@@ -166,6 +225,52 @@ export default function People() {
                   <div>
                     <h3 className="text-xl font-bold">{member.name}</h3>
                     <p className="text-lg text-gray-400">{member.title}</p>
+
+                    {/* LinkedIn and Location */}
+                    <div className="flex items-center space-x-4 mt-2">
+                      {/* LinkedIn Link */}
+                      {member.linkedin && (
+                        <a
+                          href={member.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-500 hover:text-blue-400 transition"
+                          aria-label={`${member.name}'s LinkedIn Profile`}
+                        >
+                          {/* LinkedIn SVG Icon */}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                          >
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.027-3.063-1.868-3.063-1.869 0-2.155 1.46-2.155 2.964v5.7h-3v-10h2.88v1.367h.041c.402-.76 1.385-1.562 2.846-1.562 3.046 0 3.612 2.005 3.612 4.615v5.583z" />
+                          </svg>
+                        </a>
+                      )}
+
+                      {/* Location */}
+                      {member.location && (
+                        <span className="text-gray-400 flex items-center">
+                          {/* Location SVG Icon */}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5 mr-1"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M12 11c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm0 4c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"
+                            />
+                          </svg>
+                          {member.location}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -186,11 +291,10 @@ export default function People() {
               Are you ready to make an impact? We&apos;re always looking for talented
               individuals to join our team and help us shape the future.
             </p>
-            <Link href="/jobs" passHref>
-              <a className="bg-gradient-to-r from-purple-500 to-blue-500 text-white py-3 px-8 rounded-lg text-lg font-medium hover:from-purple-600 hover:to-blue-600 transition shadow-lg">
-                View Open Positions
-              </a>
-            </Link>
+            {/* Using the Button component for the CTA */}
+            <Button href="/jobs">
+              View Open Positions
+            </Button>
           </div>
         </section>
 

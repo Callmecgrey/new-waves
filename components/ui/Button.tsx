@@ -5,6 +5,7 @@ import { ButtonHTMLAttributes, ReactNode } from 'react';
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   children: ReactNode;
+  href?: string;
 }
 
 export function Button({ children, className, ...props }: ButtonProps) {
