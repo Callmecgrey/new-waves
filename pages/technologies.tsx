@@ -5,18 +5,31 @@ import Image from 'next/image';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
+interface Technology {
+  src: string;
+  name: string;
+}
+
+interface TechSection {
+  category: string;
+  description: string;
+  technologies: Technology[];
+  layout: 'left-floating-images' | 'center-stack' | 'image-grid' | 'right-floating-images';
+  bg: string;
+}
+
 export default function Technologies() {
-  const techSections = [
+  const techSections: TechSection[] = [
     {
       category: 'Web Development',
       description:
         'We build dynamic and scalable web applications using modern frameworks and tools to ensure performance, responsiveness, and excellent user experiences.',
       technologies: [
-        'https://img.icons8.com/?size=150&id=bzf0DqjXFHIW&format=png&color=000000',
-        'https://img.icons8.com/?size=150&id=MWiBjkuHeMVq&format=png&color=000000',
-        'https://img.icons8.com/?size=150&id=54087&format=png&color=000000',
-        'https://img.icons8.com/?size=150&id=zdI5E8moxhs-&format=png&color=000000',
-        'https://img.icons8.com/?size=150&id=CIAZz2CYc6Kc&format=png&color=000000',
+        { src: 'https://img.icons8.com/?size=150&id=bzf0DqjXFHIW&format=png&color=000000', name: 'React' },
+        { src: 'https://img.icons8.com/?size=150&id=MWiBjkuHeMVq&format=png&color=000000', name: 'Next.js' },
+        { src: 'https://img.icons8.com/?size=150&id=54087&format=png&color=000000', name: 'Node.js' },
+        { src: 'https://img.icons8.com/?size=150&id=zdI5E8moxhs-&format=png&color=000000', name: 'Express.js' },
+        { src: 'https://img.icons8.com/?size=150&id=CIAZz2CYc6Kc&format=png&color=000000', name: 'GraphQL' },
       ],
       layout: 'left-floating-images',
       bg: 'bg-gradient-to-r from-purple-900 to-black',
@@ -26,13 +39,13 @@ export default function Technologies() {
       description:
         'Our mobile apps are crafted to deliver intuitive and seamless experiences for iOS and Android platforms, utilizing the latest technologies.',
       technologies: [
-        '/images/react-native.svg',
-        '/images/flutter.svg',
-        '/images/swift.svg',
-        '/images/kotlin.svg',
-        '/images/dart.svg',
+        { src: 'https://img.icons8.com/?size=100&id=35989&format=png&color=000000', name: 'React Native' },
+        { src: 'https://img.icons8.com/?size=100&id=-AszLOZlCRQ0&format=png&color=000000', name: 'Flutter' },
+        { src: 'https://img.icons8.com/?size=100&id=24465&format=png&color=000000', name: 'Swift' },
+        { src: 'https://img.icons8.com/?size=100&id=ZoxjA0jZDdFZ&format=png&color=000000', name: 'Kotlin' },
+        { src: 'https://img.icons8.com/?size=100&id=7AFcZ2zirX6Y&format=png&color=000000', name: 'Firebase' },
       ],
-      layout: 'center-stack', // Custom layout for this section
+      layout: 'center-stack',
       bg: 'bg-gradient-to-r from-blue-900 to-black',
     },
     {
@@ -40,13 +53,11 @@ export default function Technologies() {
       description:
         'We deliver high-performance desktop applications that cater to diverse industries, ensuring robustness and user satisfaction.',
       technologies: [
-        '/images/electron.svg',
-        '/images/csharp.svg',
-        '/images/javafx.svg',
-        '/images/wpf.svg',
-        '/images/qt.svg',
+        { src: 'https://img.icons8.com/?size=100&id=ypU4ctBMXsk0&format=png&color=000000', name: 'Electron' },
+        { src: 'https://img.icons8.com/?size=100&id=45490&format=png&color=000000', name: 'C#' },
+        { src: 'https://img.icons8.com/?size=100&id=BZz399uT6eo0&format=png&color=000000', name: 'Java' },
       ],
-      layout: 'image-grid', // Custom layout for this section
+      layout: 'image-grid',
       bg: 'bg-gradient-to-r from-gray-900 to-black',
     },
     {
@@ -54,13 +65,11 @@ export default function Technologies() {
       description:
         'Harnessing the power of AI to deliver intelligent and future-ready solutions that transform businesses.',
       technologies: [
-        '/images/python.svg',
-        '/images/tensorflow.svg',
-        '/images/pytorch.svg',
-        '/images/openai.svg',
-        '/images/google-ai.svg',
+        { src: 'https://img.icons8.com/?size=100&id=13441&format=png&color=000000', name: 'TensorFlow' },
+        { src: 'https://img.icons8.com/?size=100&id=n3QRpDA7KZ7P&format=png&color=000000', name: 'PyTorch' },
+        { src: 'https://img.icons8.com/?size=100&id=ka3InxFU3QZa&format=png&color=000000', name: 'OpenAI' },
       ],
-      layout: 'right-floating-images', // Custom layout for this section
+      layout: 'right-floating-images',
       bg: 'bg-gradient-to-r from-green-900 to-black',
     },
   ];
@@ -122,19 +131,22 @@ export default function Technologies() {
                     </p>
                   </div>
                   {/* Floating Tech Images */}
-                  <div className="flex-1 flex space-x-4 justify-center md:justify-start">
+                  <div className="flex-1 flex space-x-6 justify-center md:justify-start flex-wrap">
                     {section.technologies.map((tech, idx) => (
                       <div
                         key={idx}
-                        className="relative w-20 h-20 md:w-32 md:h-32 transform hover:scale-110 transition-transform"
+                        className="flex flex-col items-center w-24 h-24 md:w-32 md:h-32 transform hover:scale-110 transition-transform"
                       >
-                        <Image
-                          src={tech}
-                          alt={section.category}
-                          layout="fill"
-                          objectFit="contain"
-                          className="rounded-lg shadow-lg"
-                        />
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={tech.src}
+                            alt={tech.name}
+                            layout="fill"
+                            objectFit="contain"
+                            className="rounded-lg shadow-lg"
+                          />
+                        </div>
+                        <span className="mt-2 text-sm md:text-base text-gray-300">{tech.name}</span>
                       </div>
                     ))}
                   </div>
@@ -154,15 +166,18 @@ export default function Technologies() {
                     {section.technologies.map((tech, idx) => (
                       <div
                         key={idx}
-                        className="relative w-20 h-20 md:w-32 md:h-32 transform hover:scale-110 transition-transform"
+                        className="flex flex-col items-center w-24 h-24 md:w-32 md:h-32 transform hover:scale-110 transition-transform"
                       >
-                        <Image
-                          src={tech}
-                          alt={section.category}
-                          layout="fill"
-                          objectFit="contain"
-                          className="rounded-lg shadow-lg"
-                        />
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={tech.src}
+                            alt={tech.name}
+                            layout="fill"
+                            objectFit="contain"
+                            className="rounded-lg shadow-lg"
+                          />
+                        </div>
+                        <span className="mt-2 text-sm md:text-base text-gray-300">{tech.name}</span>
                       </div>
                     ))}
                   </div>
@@ -181,15 +196,18 @@ export default function Technologies() {
                     {section.technologies.map((tech, idx) => (
                       <div
                         key={idx}
-                        className="relative w-full h-32 transform hover:scale-110 transition-transform"
+                        className="flex flex-col items-center w-full h-32 transform hover:scale-110 transition-transform"
                       >
-                        <Image
-                          src={tech}
-                          alt={section.category}
-                          layout="fill"
-                          objectFit="contain"
-                          className="rounded-lg shadow-lg"
-                        />
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={tech.src}
+                            alt={tech.name}
+                            layout="fill"
+                            objectFit="contain"
+                            className="rounded-lg shadow-lg"
+                          />
+                        </div>
+                        <span className="mt-2 text-sm md:text-base text-gray-300">{tech.name}</span>
                       </div>
                     ))}
                   </div>
@@ -199,19 +217,22 @@ export default function Technologies() {
               {section.layout === 'right-floating-images' && (
                 <div className="flex flex-col md:flex-row items-center space-y-12 md:space-y-0">
                   {/* Floating Tech Images */}
-                  <div className="flex-1 flex space-x-4 justify-center md:justify-start">
+                  <div className="flex-1 flex space-x-6 justify-center md:justify-start flex-wrap">
                     {section.technologies.map((tech, idx) => (
                       <div
                         key={idx}
-                        className="relative w-20 h-20 md:w-32 md:h-32 transform hover:scale-110 transition-transform"
+                        className="flex flex-col items-center w-24 h-24 md:w-32 md:h-32 transform hover:scale-110 transition-transform"
                       >
-                        <Image
-                          src={tech}
-                          alt={section.category}
-                          layout="fill"
-                          objectFit="contain"
-                          className="rounded-lg shadow-lg"
-                        />
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={tech.src}
+                            alt={tech.name}
+                            layout="fill"
+                            objectFit="contain"
+                            className="rounded-lg shadow-lg"
+                          />
+                        </div>
+                        <span className="mt-2 text-sm md:text-base text-gray-300">{tech.name}</span>
                       </div>
                     ))}
                   </div>
@@ -229,25 +250,6 @@ export default function Technologies() {
             </div>
           </section>
         ))}
-
-        {/* Call to Action Section 
-        <section className="py-16 bg-black text-center">
-          <div className="container mx-auto px-6 md:px-0">
-            <h2 className="text-5xl md:text-6xl font-bold mb-8">
-              Let’s Innovate Together
-            </h2>
-            <p className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-10">
-              Partner with us to build transformative solutions powered by the
-              latest technologies.
-            </p>
-            <a
-              href="/contact"
-              className="bg-gradient-to-r from-emerald-500 to-cyan-500 text-white py-3 px-8 rounded-lg text-lg font-medium hover:from-emerald-600 hover:to-cyan-600 transition shadow-lg"
-            >
-              Get in Touch
-            </a>
-          </div>
-        </section>*/}
 
         <Footer />
       </main>
