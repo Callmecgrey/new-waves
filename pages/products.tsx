@@ -2,7 +2,7 @@
 
 import Head from 'next/head';
 import Image from 'next/image';
-import Link from 'next/link'; // Or use CustomLink if applicable
+import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
@@ -128,7 +128,7 @@ export default function Products() {
           </div>
         </section>
 
-        {/* Call to Action Section */}
+        {/* Call to Action Section
         <section className="py-16 bg-black text-center">
           <div className="container mx-auto px-6 md:px-0">
             <h2 className="text-5xl md:text-6xl font-bold mb-8">
@@ -139,14 +139,14 @@ export default function Products() {
               expertise and innovative products.
             </p>
             {/* Internal Link without nested <a> */}
-            <Link
+            {/* <Link
               href="/contact"
               className="bg-gradient-to-r from-emerald-500 to-cyan-500 text-white py-3 px-8 rounded-lg text-lg font-medium hover:from-emerald-600 hover:to-cyan-600 transition shadow-lg inline-block"
             >
               Get in Touch
             </Link>
           </div>
-        </section>
+        </section> */} 
 
         <Footer />
       </main>
