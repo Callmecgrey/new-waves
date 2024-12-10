@@ -205,48 +205,45 @@ interface JobApplicationFormProps {
 }
 
 const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle }) => {
-  // Define form steps
+  // Steps for the form
   const [step, setStep] = useState<number>(1);
 
-  // Form data state
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     country: '',
-    openToRemote: false,
+    openToRemote: '',
     coverLetter: '',
     workType: '',
-    sponsorshipVisa: false,
+    sponsorshipVisa: '',
     agreement: false,
     resumeLink: '',
   });
 
-  // Submission states
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
-  // Handle input changes
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
-    const { name, value, type, checked } = e.target;
-
-    if (type === 'checkbox') {
-      setFormData((prev) => ({ ...prev, [name]: checked }));
-    } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
-    }
+    const { name, value } = e.target;
+    // For checkboxes we used before, now replaced with selects, so no checkbox logic needed.
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle form submission
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
+    // If in future you have a checkbox, you'd do:
+    // setFormData((prev) => ({ ...prev, [e.target.name]: e.target.checked }));
+  };
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError('');
 
-    // Basic validation
+    // Validation
     if (
       !formData.name ||
       !formData.email ||
@@ -266,7 +263,6 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle }) => 
       return;
     }
 
-    // Prepare email content
     const subject = encodeURIComponent(`Application for ${jobTitle} Position`);
     const body = encodeURIComponent(
       `Hello HR Team,
@@ -278,9 +274,9 @@ Here are my details:
 - **Email:** ${formData.email}
 - **Phone Number:** ${formData.phone}
 - **Country of Residence:** ${formData.country}
-- **Open to Remote Work:** ${formData.openToRemote ? 'Yes' : 'No'}
+- **Open to Remote Work:** ${formData.openToRemote}
 - **Preferred Work Type:** ${formData.workType}
-- **Sponsorship Visa Requirement:** ${formData.sponsorshipVisa ? 'Yes' : 'No'}
+- **Sponsorship Visa Requirement:** ${formData.sponsorshipVisa}
 
 **Resume:** ${formData.resumeLink}
 
@@ -291,20 +287,17 @@ Best regards,
 ${formData.name}`
     );
 
-    // Open user's email client with pre-filled details
     window.location.href = `mailto:hr@linconwavesinnovation.com?subject=${subject}&body=${body}`;
 
-    // Simulate form submission delay
     setTimeout(() => {
       setIsSubmitted(true);
       setIsSubmitting(false);
     }, 1000);
   };
 
-  // Handle moving to next step
   const handleNext = (e: FormEvent) => {
     e.preventDefault();
-    // Basic validation for Step 1
+
     if (
       !formData.name ||
       !formData.email ||
@@ -320,7 +313,6 @@ ${formData.name}`
     setStep(2);
   };
 
-  // Handle going back to previous step
   const handleBack = () => {
     setStep(1);
     setError('');
@@ -333,7 +325,16 @@ ${formData.name}`
   return (
     <form onSubmit={step === 1 ? handleNext : handleSubmit} className="flex flex-col">
       
-      {/* Step 1 */}
+      {/* Progress Indicator */}
+      <div className="flex mb-6">
+        <div className={`flex-1 h-2 rounded ${step >= 1 ? 'bg-blue-500' : 'bg-gray-300'}`}></div>
+        <div className={`flex-1 h-2 rounded ${step >= 2 ? 'bg-blue-500' : 'bg-gray-300'}`}></div>
+      </div>
+      <div className="flex mb-6 justify-between">
+        <span className={`text-sm ${step >= 1 ? 'text-blue-500' : 'text-gray-300'}`}>Step 1</span>
+        <span className={`text-sm ${step >= 2 ? 'text-blue-500' : 'text-gray-300'}`}>Step 2</span>
+      </div>
+
       {step === 1 && (
         <>
           {/* Full Name */}
@@ -400,20 +401,22 @@ ${formData.name}`
             ))}
           </select>
 
-          {/* Open to Remote Work */}
-          <div className="flex items-center mb-4">
-            <input
-              type="checkbox"
-              id="openToRemote"
-              name="openToRemote"
-              checked={formData.openToRemote}
-              onChange={handleChange}
-              className="h-4 w-4 text-blue-600 bg-gray-700 border-gray-600 rounded"
-            />
-            <label htmlFor="openToRemote" className="ml-2 text-gray-300">
-              Open to Remote Work
-            </label>
-          </div>
+          {/* Open to Remote Work - changed to dropdown */}
+          <label className="mb-2 font-medium text-gray-300" htmlFor="openToRemote">
+            Open to Remote Work<span className="text-red-500">*</span>
+          </label>
+          <select
+            id="openToRemote"
+            name="openToRemote"
+            required
+            value={formData.openToRemote}
+            onChange={handleChange}
+            className="px-4 py-2 mb-4 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
 
           {/* Preferred Work Type */}
           <label className="mb-2 font-medium text-gray-300" htmlFor="workType">
@@ -425,7 +428,7 @@ ${formData.name}`
             required
             value={formData.workType}
             onChange={handleChange}
-            className="px-4 py-2 mb-4 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="px-4 py-2 mb-4 rounded bg-gray-700 text-white"
           >
             <option value="">Select Work Type</option>
             <option value="Remote">Remote</option>
@@ -433,20 +436,22 @@ ${formData.name}`
             <option value="Hybrid">Hybrid</option>
           </select>
 
-          {/* Sponsorship Visa Requirement */}
-          <div className="flex items-center mb-4">
-            <input
-              type="checkbox"
-              id="sponsorshipVisa"
-              name="sponsorshipVisa"
-              checked={formData.sponsorshipVisa}
-              onChange={handleChange}
-              className="h-4 w-4 text-blue-600 bg-gray-700 border-gray-600 rounded"
-            />
-            <label htmlFor="sponsorshipVisa" className="ml-2 text-gray-300">
-              Would you be needing a sponsorship visa?
-            </label>
-          </div>
+          {/* Sponsorship Visa Requirement - changed to dropdown */}
+          <label className="mb-2 font-medium text-gray-300" htmlFor="sponsorshipVisa">
+            Would you need a sponsorship visa?<span className="text-red-500">*</span>
+          </label>
+          <select
+            id="sponsorshipVisa"
+            name="sponsorshipVisa"
+            required
+            value={formData.sponsorshipVisa}
+            onChange={handleChange}
+            className="px-4 py-2 mb-4 rounded bg-gray-700 text-white"
+          >
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
 
           {/* Agreement to Processing User Information */}
           <div className="flex items-center mb-4">
@@ -455,7 +460,7 @@ ${formData.name}`
               id="agreement"
               name="agreement"
               checked={formData.agreement}
-              onChange={handleChange}
+              onChange={(e) => setFormData((prev) => ({ ...prev, agreement: e.target.checked }))}
               required
               className="h-4 w-4 text-blue-600 bg-gray-700 border-gray-600 rounded"
             />
@@ -465,10 +470,9 @@ ${formData.name}`
             </label>
           </div>
 
-          {/* Submission Status */}
           {error && <p className="text-red-500 mb-4">{error}</p>}
 
-          {/* Navigation Buttons */}
+          {/* Next Button */}
           <div className="flex justify-end">
             <Button type="submit" disabled={isSubmitting}>
               {isSubmitting ? 'Proceeding...' : 'Next'}
@@ -477,7 +481,6 @@ ${formData.name}`
         </>
       )}
 
-      {/* Step 2 */}
       {step === 2 && (
         <>
           {/* Resume Link */}
@@ -510,13 +513,9 @@ ${formData.name}`
             rows={6}
           />
 
-          {/* Submission Status */}
           {error && <p className="text-red-500 mb-4">{error}</p>}
-          {isSubmitted && (
-            <p className="text-green-500 mb-4">Thank you for applying!</p>
-          )}
+          {isSubmitted && <p className="text-green-500 mb-4">Thank you for applying!</p>}
 
-          {/* Navigation Buttons */}
           <div className="flex justify-between">
             <Button type="button" onClick={handleBack}>
               Back

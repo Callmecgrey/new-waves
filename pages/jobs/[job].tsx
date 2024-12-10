@@ -39,20 +39,34 @@ export default function JobDetail({ job }: JobDetailProps) {
       <main className="bg-black text-white pt-16 min-h-screen">
         <Navbar />
 
-        {/* Job Detail and Application Form Section */}
         <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
           <div className="container mx-auto px-6 md:px-12">
             <div className="flex flex-col lg:flex-row lg:space-x-12">
-              
-              {/* Job Details */}
+
+              {/* Job Details (Left) */}
               <div className="lg:w-1/2 mb-12 lg:mb-0">
-                <h1 className="text-4xl md:text-5xl font-bold mb-4">{job.title}</h1>
+                {/* Increased job title size */}
+                <h1 className="text-5xl md:text-6xl font-bold mb-6">{job.title}</h1>
                 <p className="text-gray-400 mb-2">{job.location}</p>
                 <p className="text-gray-400 mb-4">{job.type}</p>
                 <p className="text-gray-300 mb-6">{job.description}</p>
+
+                {/* Salary Range and Compensation Package */}
+                <h2 className="text-2xl font-semibold mb-2">Salary Range</h2>
+                <ul className="text-gray-300 mb-6">
+                  <li><strong>EU:</strong> €30,000 - €50,000</li>
+                  <li><strong>US:</strong> $40,000 - $65,000</li>
+                  <li><strong>Rest of the World:</strong> Competitive, based on experience</li>
+                </ul>
+
+                <h2 className="text-2xl font-semibold mb-2">Compensation Package</h2>
+                <p className="text-gray-300 mb-6">
+                  We offer a comprehensive compensation package including health benefits, 
+                  remote work support, professional development opportunities, and performance-based bonuses.
+                </p>
               </div>
 
-              {/* Application Form */}
+              {/* Application Form (Right) */}
               <div className="lg:w-1/2">
                 <h2 className="text-3xl md:text-4xl font-semibold mb-6">Apply for this Position</h2>
                 <JobApplicationForm jobTitle={job.title} />
@@ -167,4 +181,3 @@ export const getStaticProps: GetStaticProps = async (context) => {
     },
   };
 };
-
