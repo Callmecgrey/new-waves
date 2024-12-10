@@ -108,8 +108,6 @@ export default function Products() {
                         objectFit="cover"
                         className="transition-transform group-hover:scale-110"
                         priority
-                        placeholder="blur" // Optional: Add blur placeholder if available
-                        blurDataURL="/images/placeholder.png" // Optional: Provide a low-res placeholder
                       />
                     </div>
                     <div className="p-6">
@@ -127,26 +125,6 @@ export default function Products() {
             </div>
           </div>
         </section>
-
-        {/* Call to Action Section
-        <section className="py-16 bg-black text-center">
-          <div className="container mx-auto px-6 md:px-0">
-            <h2 className="text-5xl md:text-6xl font-bold mb-8">
-              Let&apos;s Innovate Together
-            </h2>
-            <p className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-10">
-              Take the next step in transforming your business with our
-              expertise and innovative products.
-            </p>
-            {/* Internal Link without nested <a> */}
-            {/* <Link
-              href="/contact"
-              className="bg-gradient-to-r from-emerald-500 to-cyan-500 text-white py-3 px-8 rounded-lg text-lg font-medium hover:from-emerald-600 hover:to-cyan-600 transition shadow-lg inline-block"
-            >
-              Get in Touch
-            </Link>
-          </div>
-        </section> */} 
 
         <Footer />
       </main>
