@@ -1,6 +1,7 @@
 // pages/do-not-sell-my-data.tsx
 
 import Head from 'next/head';
+import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
@@ -83,9 +84,9 @@ export default function DoNotSellMyData() {
                 </li>
                 <li>
                   <strong>Support Page:</strong> Visit our{' '}
-                  <a href="/support" className="text-blue-500 underline">
+                  <Link href="/support" className="text-blue-500 underline">
                     Support Page
-                  </a>{' '}
+                  </Link>{' '}
                   to submit a request through our online form.
                 </li>
               </ul>
@@ -131,9 +132,9 @@ export default function DoNotSellMyData() {
                 </li>
                 <li>
                   Through our{' '}
-                  <a href="/support" className="text-blue-500 underline">
+                  <Link href="/support" className="text-blue-500 underline">
                     Support Page
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
