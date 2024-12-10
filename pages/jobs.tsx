@@ -1,10 +1,11 @@
-// pages/jobs.tsx
+// pages/jobs/index.tsx
 
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import Link from 'next/link'; 
+import Link from 'next/link';
 import { useState } from 'react';
+import { slugify } from '../utils/slugify';
 
 interface Job {
   title: string;
@@ -52,7 +53,44 @@ export default function Jobs() {
         'As a Cloud Architect, you’ll design and manage scalable cloud-based infrastructures for enterprise-level solutions.',
       link: '/jobs/cloud-architect',
       department: 'Engineering',
-    }
+    },
+    // Additional Jobs
+    {
+      title: 'Marketing Manager',
+      location: 'London, UK',
+      type: 'Full-Time',
+      description:
+        'Seeking an experienced Marketing Manager to lead our marketing strategies and campaigns.',
+      link: '/jobs/marketing-manager',
+      department: 'Marketing',
+    },
+    {
+      title: 'Sales Executive',
+      location: 'Remote',
+      type: 'Full-Time',
+      description:
+        'Join our sales team to drive revenue and build relationships with clients worldwide.',
+      link: '/jobs/sales-executive',
+      department: 'Sales',
+    },
+    {
+      title: 'Product Manager',
+      location: 'Berlin, Germany',
+      type: 'Full-Time',
+      description:
+        'Looking for a Product Manager to oversee product development and ensure alignment with business goals.',
+      link: '/jobs/product-manager',
+      department: 'Product Management',
+    },
+    {
+      title: 'Human Resources Specialist',
+      location: 'Remote',
+      type: 'Full-Time',
+      description:
+        'Responsible for recruiting, employee relations, and maintaining HR policies.',
+      link: '/jobs/human-resources-specialist',
+      department: 'Human Resources',
+    },
   ];
 
   // State for selected tab
@@ -108,7 +146,7 @@ export default function Jobs() {
             </h2>
 
             {/* Tabs for Departments */}
-            <div className="flex justify-center mb-12 space-x-4">
+            <div className="flex justify-center mb-12 space-x-4 flex-wrap">
               {allDepartments.map((dept) => (
                 <button
                   key={dept}
@@ -117,7 +155,7 @@ export default function Jobs() {
                     selectedDepartment === dept
                       ? 'bg-gradient-to-r from-purple-500 to-blue-500 text-white'
                       : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
-                  } transition`}
+                  } transition m-2`}
                 >
                   {dept}
                 </button>
@@ -136,7 +174,7 @@ export default function Jobs() {
                   <p className="text-gray-400 mb-4">{job.type}</p>
                   <p className="text-gray-300 mb-4">{job.description}</p>
                   <Link
-                    href={job.link}
+                    href={`/jobs/${slugify(job.title)}`}
                     className="inline-block mt-auto px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full hover:from-cyan-600 hover:to-blue-600 transition"
                   >
                     Apply Now
