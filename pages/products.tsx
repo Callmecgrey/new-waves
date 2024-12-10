@@ -12,14 +12,14 @@ export default function Products() {
       name: 'Jolimate',
       description:
         'Jolimate revolutionizes online dating by leveraging advanced matchmaking algorithms and personalized user experiences. Connect with like-minded individuals seamlessly, ensuring meaningful and lasting relationships.',
-      image: '/images/web-joli.png',
+      image: '/images/web-joli.jpg',
       link: 'https://jolimate.app',
     },
     {
       name: 'Jobmint',
       description:
         'Jobmint simplifies the job search process with real-time listings, tailored job recommendations, and an intuitive interface. Whether you\'re a seasoned professional or just starting out, Jobmint helps you find the perfect opportunity with ease.',
-      image: '/images/product-beta.jpg',
+      image: '/images/web-jobmint.jpg',
       link: 'https://jobmint.io',
     },
     {
