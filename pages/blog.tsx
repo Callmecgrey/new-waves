@@ -4,44 +4,12 @@ import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Image from 'next/image';
+import { blogPosts } from '../data/postsData';
 
 export default function Blog() {
-  const featuredPosts = [
-    {
-      title: 'The Future of AI in Business',
-      description:
-        'How artificial intelligence is transforming industries and driving innovation.',
-      image: '/images/blog-ai-future.jpg',
-      date: 'December 1, 2024',
-      link: '/blog/the-future-of-ai-in-business',
-    },
-    {
-      title: '5 Web Development Trends for 2024',
-      description:
-        'Stay ahead of the curve with these game-changing web development trends.',
-      image: '/images/blog-web-trends.jpg',
-      date: 'November 15, 2024',
-      link: '/blog/web-development-trends-2024',
-    },
-  ];
-
-  const recentPosts = [
-    {
-      title: 'Scaling Your Business with Cloud Technologies',
-      date: 'November 10, 2024',
-      link: '/blog/scaling-with-cloud',
-    },
-    {
-      title: 'Building Better User Experiences with Design Thinking',
-      date: 'October 25, 2024',
-      link: '/blog/design-thinking',
-    },
-    {
-      title: 'How Machine Learning is Revolutionizing Healthcare',
-      date: 'October 5, 2024',
-      link: '/blog/machine-learning-healthcare',
-    },
-  ];
+  const featuredPosts = blogPosts.filter((post) => post.featured);
+  // For recent posts, exclude featured and sort by date or just show the others
+  const recentPosts = blogPosts.filter((post) => !post.featured);
 
   return (
     <>
@@ -93,19 +61,23 @@ export default function Blog() {
                   key={index}
                   className="bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-all"
                 >
-                  <div className="relative w-full h-64">
-                    <Image
-                      src={post.image}
-                      alt={post.title}
-                      layout="fill"
-                      objectFit="cover"
-                      className="rounded-t-lg"
-                    />
-                  </div>
+                  {post.image && (
+                    <div className="relative w-full h-64">
+                      <Image
+                        src={post.image}
+                        alt={post.title}
+                        layout="fill"
+                        objectFit="cover"
+                        className="rounded-t-lg"
+                      />
+                    </div>
+                  )}
                   <div className="p-6">
                     <h3 className="text-2xl font-bold mb-2">{post.title}</h3>
                     <p className="text-gray-400 mb-4">{post.date}</p>
-                    <p className="text-gray-300">{post.description}</p>
+                    {post.description && (
+                      <p className="text-gray-300 mb-4">{post.description}</p>
+                    )}
                     <a
                       href={post.link}
                       className="text-blue-500 hover:text-blue-400 mt-4 inline-block underline"
