@@ -4,12 +4,21 @@ import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Image from 'next/image';
+import { useState } from 'react';
+import Link from 'next/link';
 import { blogPosts } from '../data/postsData';
 
 export default function Blog() {
   const featuredPosts = blogPosts.filter((post) => post.featured);
-  // For recent posts, exclude featured and sort by date or just show the others
   const recentPosts = blogPosts.filter((post) => !post.featured);
+
+  const [email, setEmail] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+  };
 
   return (
     <>
@@ -78,12 +87,13 @@ export default function Blog() {
                     {post.description && (
                       <p className="text-gray-300 mb-4">{post.description}</p>
                     )}
-                    <a
+                    {/* Use Link instead of <a> for internal navigation */}
+                    <Link
                       href={post.link}
                       className="text-blue-500 hover:text-blue-400 mt-4 inline-block underline"
                     >
                       Read More
-                    </a>
+                    </Link>
                   </div>
                 </div>
               ))}
@@ -109,37 +119,57 @@ export default function Blog() {
                 >
                   <h3 className="text-2xl font-bold mb-2">{post.title}</h3>
                   <p className="text-gray-400 mb-2">{post.date}</p>
-                  <a
+                  {/* Also fix recent posts links */}
+                  <Link
                     href={post.link}
                     className="text-blue-500 hover:text-blue-400 underline"
                   >
                     Read More
-                  </a>
+                  </Link>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Call to Action Section */}
+        {/* Subscribe Box */}
         <section className="py-16 bg-gradient-to-b from-black to-gray-900 text-center">
-          <div className="container mx-auto px-6 md:px-0">
+          <div className="container mx-auto px-6 md:px-0 max-w-xl">
             <h2 className="text-5xl md:text-6xl font-bold mb-8">
-              Stay Updated with{' '}
+              Know about it{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">
-                Linconwaves
+                First
               </span>
             </h2>
-            <p className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-10">
-              Subscribe to our newsletter and never miss an update from our
-              blog.
+            <p className="text-xl md:text-2xl text-gray-400 mb-10">
+              Never miss an update from us.
             </p>
-            <a
-              href="/subscribe"
-              className="bg-gradient-to-r from-blue-500 to-purple-500 text-white py-3 px-8 rounded-lg text-lg font-medium hover:from-blue-600 hover:to-purple-600 transition shadow-lg"
-            >
-              Subscribe Now
-            </a>
+
+            {!isSubmitted ? (
+              <form onSubmit={handleSubscribe} className="space-y-4">
+                <input
+                  type="email"
+                  required
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-4 py-3 rounded-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <button
+                  type="submit"
+                  className="bg-gradient-to-r from-blue-500 to-purple-500 text-white py-3 px-8 rounded-lg text-lg font-medium hover:from-blue-600 hover:to-purple-600 transition shadow-lg w-full"
+                >
+                  Subscribe Now
+                </button>
+              </form>
+            ) : (
+              <div className="bg-gray-800 p-6 rounded-md shadow-lg">
+                <h3 className="text-2xl font-bold mb-2">Thanks for Subscribing!</h3>
+                <p className="text-gray-300">
+                  We&apos;ll keep you updated with our latest posts and insights.
+                </p>
+              </div>
+            )}
           </div>
         </section>
 
