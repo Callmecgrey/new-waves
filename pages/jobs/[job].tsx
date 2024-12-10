@@ -119,7 +119,6 @@ const jobs: Job[] = [
     link: '/jobs/cloud-architect',
     department: 'Engineering',
   },
-  // Additional Jobs
   {
     title: 'Marketing Manager',
     location: 'London, UK',
